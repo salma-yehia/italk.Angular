@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';
 
-enum Gander {
+enum Gender {
   Male = 1,
   Female = 2,
 }
@@ -27,7 +27,7 @@ export class StudentRegisterComponent implements OnInit {
       UserName : new FormControl(null , [
         Validators.required , Validators.pattern(`/^[a-zA-Z\s]+$/`)
       ]),
-      Gander : new FormControl(null , [
+      Gender : new FormControl(null , [
         Validators.required 
       ]),
       Email : new FormControl(null , [
@@ -52,9 +52,9 @@ export class StudentRegisterComponent implements OnInit {
   get Email(){
     return this.registerForm.get('Email');
   }
-  get Gander() {
-    const ganderValue = this.getGanderValue(this.registerForm.get('Gander')?.value);
-    return ganderValue;
+  get Gender() {
+    const genderValue = this.getGenderValue(this.registerForm.get('Gender')?.value);
+    return genderValue;
   }
   get Age(){
     return this.registerForm.get('Age');
@@ -70,7 +70,7 @@ export class StudentRegisterComponent implements OnInit {
 
   registerData(): void {
     this.registerStudent.UserName=this.UserName?.value
-    this.registerStudent.Gander=+this.Gander
+    this.registerStudent.Gender=+this.Gender
     this.registerStudent.PasswordHash=this.PasswordHash?.value
     this.registerStudent.Level=this.Level?.value
     this.registerStudent.Age=this.Age?.value
@@ -87,10 +87,10 @@ export class StudentRegisterComponent implements OnInit {
     });
   }
 
-  ganderEnum = Gander;
-  ganderValues = Object.keys(Gander).filter(k => typeof Gander[k as any] === 'number');
+  genderEnum = Gender;
+  genderValues = Object.keys(Gender).filter(k => typeof Gender[k as any] === 'number');
 
-  getGanderValue(gander: string): Gander {
-    return this.ganderEnum[gander as keyof typeof Gander];
+  getGenderValue(gander: string): Gender {
+    return this.genderEnum[gander as keyof typeof Gender];
   }
 }

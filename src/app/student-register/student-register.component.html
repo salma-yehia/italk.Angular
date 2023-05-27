@@ -1,5 +1,5 @@
-<form [formGroup]="registerForm"]>
-    <div class="form-group">
+<form [formGroup]="registerForm">
+  <div class="form-group">
       <label for="Username">Username</label>
       <input type="text" formControlName="UserName" class = "form-control"/>
       <div *ngIf="registerForm.get('UserName')?.errors != null &&  registerForm.get('UserName')?.touched" class="alert alert-danger">
@@ -12,8 +12,8 @@
         <label for="Gender">Gender</label>
         <select class="form-control" formControlName="Gender">
           <option value="" disabled>Select Gender</option>
-          <option *ngFor="let gander of ganderValues" [value]="gander">
-          {{ gander }}
+          <option *ngFor="let gender of genderValues" [value]="gender">
+          {{ gender }}
           </option>
         </select>
         <div *ngIf="registerForm.get('Gender')?.errors != null && registerForm.get('Gender')?.touched" class="alert alert-danger">
@@ -21,7 +21,7 @@
         </div>      
     
     <div class="form-group">
-      <label for="Email">City</label>
+      <label for="Email">Email</label>
       <input type="text" class="form-control" formControlName="Email">
       <div *ngIf="registerForm.get('Email')?.errors != null &&  registerForm.get('Email')?.touched" class="alert alert-danger">
         <div *ngIf="registerForm.get('Email')?.errors?.['Email']">Email is required.</div>

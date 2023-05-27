@@ -1,7 +1,7 @@
 export interface Student {
     Id : number;
     UserName : String;
-      Gander : number;
+      Gender : number;
       Email : String;
       Age : number;
       PasswordHash : String;
