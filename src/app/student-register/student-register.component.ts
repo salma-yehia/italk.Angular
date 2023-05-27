@@ -1,0 +1,96 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup , Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { Student } from '../models/student';
+import { StudentService } from '../services/student.service';
+
+enum Gander {
+  Male = 1,
+  Female = 2,
+}
+@Component({
+  selector: 'app-student-register',
+  templateUrl: './student-register.component.html',
+  styleUrls: ['./student-register.component.css']
+})
+
+export class StudentRegisterComponent implements OnInit {
+  registerStudent:Student={} as Student;
+  errorMessage:string="";
+  
+  
+  registerForm:FormGroup ;
+  
+
+  constructor(private fb:FormBuilder,private studentService:StudentService,private router : Router){
+    this.registerForm=this.fb.group({
+      UserName : new FormControl(null , [
+        Validators.required , Validators.pattern(`/^[a-zA-Z\s]+$/`)
+      ]),
+      Gander : new FormControl(null , [
+        Validators.required 
+      ]),
+      Email : new FormControl(null , [
+        Validators.required , Validators.pattern(`/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/`)
+      ]),
+      Age : new FormControl(null , [
+        Validators.required 
+      ]),
+      PasswordHash : new FormControl(null , [
+        Validators.pattern(`/^(?=.*[a-zA-Z]).+$/`)
+      ]),
+      Level : new FormControl(null , [
+        Validators.required 
+      ]),    
+    });
+
+  }
+
+  get UserName(){
+    return this.registerForm.get('UserName');
+  }
+  get Email(){
+    return this.registerForm.get('Email');
+  }
+  get Gander() {
+    const ganderValue = this.getGanderValue(this.registerForm.get('Gander')?.value);
+    return ganderValue;
+  }
+  get Age(){
+    return this.registerForm.get('Age');
+  }
+  get PasswordHash(){
+    return this.registerForm.get('PasswordHash');
+  }
+  get Level(){
+    return this.registerForm.get('Level');
+  }
+  ngOnInit(): void {
+  }
+
+  registerData(): void {
+    this.registerStudent.UserName=this.UserName?.value
+    this.registerStudent.Gander=+this.Gander
+    this.registerStudent.PasswordHash=this.PasswordHash?.value
+    this.registerStudent.Level=this.Level?.value
+    this.registerStudent.Age=this.Age?.value
+    this.registerStudent.Email=this.Email?.value
+
+    console.log(this.registerStudent);
+    this.studentService.createStudent(this.registerStudent).subscribe({
+      next: (data) => {
+        console.log(data);
+        // Redirect to /students route
+        this.router.navigate(['/students']);
+      },
+      error: (err) => this.errorMessage = err
+    });
+  }
+
+  ganderEnum = Gander;
+  ganderValues = Object.keys(Gander).filter(k => typeof Gander[k as any] === 'number');
+
+  getGanderValue(gander: string): Gander {
+    return this.ganderEnum[gander as keyof typeof Gander];
+  }
+}
