@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup , Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { Student } from '../models/student';
-import { StudentService } from '../services/student.service';
+import { Student } from 'src/app/models/student';
+import { StudentService } from 'src/app/services/student.service';
 
 enum Gender {
   Male = 1,
@@ -25,13 +25,13 @@ export class StudentRegisterComponent implements OnInit {
   constructor(private fb:FormBuilder,private studentService:StudentService,private router : Router){
     this.registerForm=this.fb.group({
       UserName : new FormControl(null , [
-        Validators.required , Validators.pattern(`/^[a-zA-Z\s]+$/`)
+        Validators.required //, Validators.pattern('^[a-zA-Z\s]+$')
       ]),
       Gender : new FormControl(null , [
         Validators.required 
       ]),
       Email : new FormControl(null , [
-        Validators.required , Validators.pattern(`/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/`)
+        Validators.required //, Validators.pattern(`/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/`)
       ]),
       Age : new FormControl(null , [
         Validators.required 
@@ -90,7 +90,18 @@ export class StudentRegisterComponent implements OnInit {
   genderEnum = Gender;
   genderValues = Object.keys(Gender).filter(k => typeof Gender[k as any] === 'number');
 
-  getGenderValue(gander: string): Gender {
-    return this.genderEnum[gander as keyof typeof Gender];
+  getGenderValue(gender: string): Gender {
+    return this.genderEnum[gender as keyof typeof Gender];
   }
+
+  isControlInvalid(controlName: string): boolean {
+    const control = this.registerForm.get(controlName);
+    return control?.errors != null && control?.touched;
+  }
+  
+  isControlError(controlName: string, errorName: string): boolean {
+    const control = this.registerForm.get(controlName);
+    return control?.errors && control?.errors[errorName];
+  }
+  
 }

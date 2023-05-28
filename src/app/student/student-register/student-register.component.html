@@ -1,0 +1,60 @@
+<form [formGroup]="registerForm">
+    <div class="form-group">
+        <label for="Username">Username</label>
+        <input type="text" formControlName="UserName" class = "form-control"/>
+        <div *ngIf="isControlInvalid('UserName')" class="alert alert-danger">
+          <div *ngIf="isControlError('UserName', 'required')">Username is required.</div>
+          <div *ngIf="isControlError('UserName', 'pattern')">Username should contain only characters and spaces.</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+          <label for="Gender">Gender</label>
+          <select class="form-control" formControlName="Gender">
+            <option value="" disabled>Select Gender</option>
+            <option *ngFor="let gender of genderValues" [value]="gender">
+            {{ gender }}
+            </option>
+          </select>
+          <div *ngIf="isControlInvalid('Gender')" class="alert alert-danger">
+            <div *ngIf="isControlError('Gender', 'required')">Gender is required.</div>
+          </div>     
+      
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="text" class="form-control" formControlName="Email">
+        <div *ngIf="isControlInvalid('Email')" class="alert alert-danger">
+          <div *ngIf="isControlError('Email', 'required')">Email is required.</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="PasswordHash">Password</label>
+        <input type="password" class="form-control" formControlName="PasswordHash">
+        <div *ngIf="isControlInvalid('PasswordHash')" class="alert alert-danger">
+          <div *ngIf="isControlError('PasswordHash', 'required')">Password is required.</div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+          <label for="Age">Age</label>
+          <input type="number" class="form-control" formControlName="Age">
+          <div *ngIf="isControlInvalid('Age')" class="alert alert-danger">
+            <div *ngIf="isControlError('Age', 'required')">Age is required.</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Level">Level</label>
+          <input type="text" class="form-control" formControlName="Level">
+          <div *ngIf="isControlInvalid('Level')" class="alert alert-danger">
+            <div *ngIf="isControlError('Level', 'required')">Level is required.</div>
+          </div>
+        </div>
+  
+      <div class="alert alert-danger" *ngIf="registerForm.invalid && (registerForm.dirty)">
+          Please fix the errors in the form.
+      </div>
+      
+      <button type="submit" class="btn btn-primary" (click)="registerData()">Register</button>
+  </div>
+  </form>    

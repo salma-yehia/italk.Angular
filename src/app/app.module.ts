@@ -4,21 +4,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StudentRegisterComponent } from './student-register/student-register.component';
-import { StudentHomeComponent } from './student-home/student-home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StudentModule } from './student/student.module';
+import { InstructorModule } from './instructor/instructor.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentRegisterComponent,
-    StudentHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StudentModule,
+    InstructorModule,
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
