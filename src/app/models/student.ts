@@ -4,6 +4,6 @@ export interface Student {
       Gender : number;
       Email : String;
       Age : number;
-      PasswordHash : String;
+      Password : String;
       Level : String;
 }

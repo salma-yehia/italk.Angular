@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StudentModule } from './student/student.module';
 import { InstructorModule } from './instructor/instructor.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
     HttpClientModule,
     StudentModule,
     InstructorModule,
-    AuthenticationModule
+    AuthenticationModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,19 +25,19 @@ export class StudentRegisterComponent implements OnInit {
   constructor(private fb:FormBuilder,private studentService:StudentService,private router : Router){
     this.registerForm=this.fb.group({
       UserName : new FormControl(null , [
-        Validators.required //, Validators.pattern('^[a-zA-Z\s]+$')
+        Validators.required , Validators.pattern(`^[A-Za-z0-9]*$`)
       ]),
       Gender : new FormControl(null , [
         Validators.required 
       ]),
       Email : new FormControl(null , [
-        Validators.required //, Validators.pattern(`/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/`)
+        Validators.required , Validators.email
       ]),
       Age : new FormControl(null , [
         Validators.required 
       ]),
-      PasswordHash : new FormControl(null , [
-        Validators.pattern(`/^(?=.*[a-zA-Z]).+$/`)
+      Password : new FormControl(null , [
+        Validators.pattern(`.*[A-Za-z].*`)
       ]),
       Level : new FormControl(null , [
         Validators.required 
@@ -53,14 +53,12 @@ export class StudentRegisterComponent implements OnInit {
     return this.registerForm.get('Email');
   }
   get Gender() {
-    const genderValue = this.getGenderValue(this.registerForm.get('Gender')?.value);
-    return genderValue;
-  }
+    return this.registerForm.get('Gender');  }
   get Age(){
     return this.registerForm.get('Age');
   }
-  get PasswordHash(){
-    return this.registerForm.get('PasswordHash');
+  get Password(){
+    return this.registerForm.get('Password');
   }
   get Level(){
     return this.registerForm.get('Level');
@@ -70,8 +68,8 @@ export class StudentRegisterComponent implements OnInit {
 
   registerData(): void {
     this.registerStudent.UserName=this.UserName?.value
-    this.registerStudent.Gender=+this.Gender
-    this.registerStudent.PasswordHash=this.PasswordHash?.value
+    this.registerStudent.Gender=+this.Gender?.value
+    this.registerStudent.Password=this.Password?.value
     this.registerStudent.Level=this.Level?.value
     this.registerStudent.Age=this.Age?.value
     this.registerStudent.Email=this.Email?.value
@@ -88,20 +86,11 @@ export class StudentRegisterComponent implements OnInit {
   }
 
   genderEnum = Gender;
-  genderValues = Object.keys(Gender).filter(k => typeof Gender[k as any] === 'number');
-
-  getGenderValue(gender: string): Gender {
-    return this.genderEnum[gender as keyof typeof Gender];
-  }
-
-  isControlInvalid(controlName: string): boolean {
-    const control = this.registerForm.get(controlName);
-    return control?.errors != null && control?.touched;
-  }
+  genderValues = Object.keys(Gender).filter(k => !isNaN(+k));
   
   isControlError(controlName: string, errorName: string): boolean {
     const control = this.registerForm.get(controlName);
-    return control?.errors && control?.errors[errorName];
+    return control?.errors && control?.errors[errorName] && control?.touched;
   }
   
 }
