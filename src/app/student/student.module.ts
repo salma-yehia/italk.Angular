@@ -4,7 +4,9 @@ import { StudentRegisterComponent } from './student-register/student-register.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentHomeComponent } from './student-home/student-home.component';
-
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -20,6 +22,9 @@ import { StudentHomeComponent } from './student-home/student-home.component';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
   ]
 })
 export class StudentModule { }

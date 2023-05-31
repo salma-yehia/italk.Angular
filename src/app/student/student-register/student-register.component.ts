@@ -4,10 +4,13 @@ import { Router } from '@angular/router';
 import { Student } from 'src/app/models/student';
 import { StudentService } from 'src/app/services/student.service';
 
+ 
+
 enum Gender {
   Male = 1,
   Female = 2,
 }
+
 @Component({
   selector: 'app-student-register',
   templateUrl: './student-register.component.html',
@@ -37,7 +40,7 @@ export class StudentRegisterComponent implements OnInit {
         Validators.required 
       ]),
       Password : new FormControl(null , [
-        Validators.pattern(`.*[A-Za-z].*`)
+        Validators.pattern(`.*[A-Za-z].*`) , Validators.required
       ]),
       Level : new FormControl(null , [
         Validators.required 
