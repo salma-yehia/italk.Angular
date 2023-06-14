@@ -1,9 +1,44 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Instructor } from '../models/instructor';
+import { Reservation } from '../models/reservation';
+import { UploadFile } from '../models/upload-file';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstructorService {
 
-  constructor() { }
+  private registerUrl = `https://localhost:7137/api/User`;
+  private reservationUrl =`https://localhost:7137/api/Instructor/GetReservationForInstructor`;
+
+  constructor(private http : HttpClient) { }
+
+  createInstructor(instructor: Instructor): Observable<void> {
+    const url = `${this.registerUrl}/InstructorRegister`;
+    return this.http.post<void>(url , instructor);
+  }
+  getReservationForInstructor(id : number):Observable<Reservation[]>{
+    const url = `${this.reservationUrl}/${id}`;
+    return this.http.get<Reservation[]>(url);
+  }
+  public uploadImage(image: File): Observable<UploadFile> {
+    var form = new FormData();
+    form.append('file', image);
+
+    return this.http.post<UploadFile>(
+      'https://localhost:7137/api/File/UploadImage',
+      form
+    );
+  }
+  public uploadCertificate(cert: File): Observable<UploadFile> {
+    var form = new FormData();
+    form.append('file', cert);
+
+    return this.http.post<UploadFile>(
+      'https://localhost:7137/api/File/UploadCertificate',
+      form
+    );
+  }
 }

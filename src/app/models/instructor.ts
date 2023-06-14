@@ -2,7 +2,7 @@ export interface Instructor {
     Id : number;
     UserName : String;
     Email : String;
-    PasswordHash : String;
+    Password : String;
     Degree : number;
     Appointment : Date;
     Nationality : String;
@@ -11,6 +11,6 @@ export interface Instructor {
     Experience : String;
     TeachingCertificate : String;
     ExtraCourses : String;
-    Gander : number;
+    Gender : number;
     LanguageId : number;
 }

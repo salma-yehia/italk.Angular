@@ -2,13 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { InstructorRoutingModule } from './instructor-routing.module';
-
+import { InstructorRegisterComponent } from './instructor-register/instructor-register.component';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    InstructorRegisterComponent
+  ],
   imports: [
     CommonModule,
-    InstructorRoutingModule
+    InstructorRoutingModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class InstructorModule { }

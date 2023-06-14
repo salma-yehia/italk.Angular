@@ -8,10 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { InstructorModule } from './instructor/instructor.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
