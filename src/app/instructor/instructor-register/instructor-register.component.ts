@@ -133,8 +133,7 @@ export class InstructorRegisterComponent implements OnInit {
     this.registerInstructor.Nationality=this.Nationality?.value
     this.registerInstructor.TeachingCertificate=this.TeachingCertificate?.value
     this.registerInstructor.LanguageId=this.LanguageId?.value
-    e.preventDefault();
-    console.log(this.registerForm.value);
+
     this.instructorService.createInstructor(this.registerInstructor).subscribe({
       next: (data) => {
         console.log(data);
@@ -168,7 +167,20 @@ export class InstructorRegisterComponent implements OnInit {
       input.value = '';
     });
   }
+  uploadCert(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
   
+    if (!file) return;
+  
+    this.instructorService.uploadCertificate(file).subscribe((response) => {
+      this.certUrl = response.url;
+      this.registerForm.patchValue({ TeachingCertificate: this.certUrl });
+  
+      // Reset the file input
+      input.value = '';
+    });
+  }  
   
   
   

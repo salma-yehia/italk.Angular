@@ -56,7 +56,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Appointment</mat-label>
-    <input type="datetime" matInput formControlName="Appointment">
+    <input type="date" matInput formControlName="Appointment">
     <mat-error *ngIf="isControlError('Appointment', 'required')">
       Appointment is <strong>required.</strong>
     </mat-error>
@@ -93,12 +93,12 @@
     </mat-error>
   </mat-form-field>
 
-  <!-- <mat-form-field class="example-full-width">
-    <input type="file">
-    <mat-error *ngIf="isControlError('TeachingCertificate', 'required')">
-      TeachingCertificate is <strong>required.</strong>
-    </mat-error>
-  </mat-form-field> -->
+  <div class="example-full-width">
+    <input type="file" #fileInput2 hidden (change)="uploadCert($event)">
+    <button mat-button color="primary" (click)="fileInput2.click()">Select Certificate</button>
+    <span *ngIf="isControlError('TeachingCertificate', 'required')">
+      TeachingCertificate is <strong>required.</strong></span>
+  </div>
 
   <mat-form-field class="example-full-width">
     <mat-label>ExtraCourses</mat-label>
