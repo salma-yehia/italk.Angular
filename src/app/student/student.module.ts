@@ -7,6 +7,7 @@ import { StudentHomeComponent } from './student-home/student-home.component';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import { StudentRoutingModule } from './student-routing.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StudentRoutingModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule

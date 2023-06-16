@@ -1,4 +1,4 @@
 export interface Login {
-    UserName : String;
-    PasswordHash : String;
+    Email : String;
+    Password : String;
 }

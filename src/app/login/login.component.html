@@ -1,0 +1,30 @@
+<form [formGroup]="loginForm" class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="Email">
+        <mat-error *ngIf="isControlError('Email', 'email')">
+          Enter a valid Email
+        </mat-error>
+        <mat-error *ngIf="isControlError('Email', 'required')">
+          Email is <strong>required.</strong>
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="Password">
+        <mat-error *ngIf="isControlError('Password', 'pattern')">
+          Password should contain at least one character.
+        </mat-error>
+        <mat-error *ngIf="isControlError('Password', 'required')">
+          Password is <strong>required.</strong>
+        </mat-error>
+      </mat-form-field>
+      <div class="alert alert-danger" *ngIf="loginForm.invalid && (loginForm.dirty)">
+        Please fix the errors in the form.
+    </div>
+    
+    <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="submitLoginForm()">Login</button>
+    </div>
+</form>    
