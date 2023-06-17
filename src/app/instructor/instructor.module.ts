@@ -15,8 +15,7 @@ import { CardsOfInstructorsComponent } from './cards-of-instructors/cards-of-ins
 @NgModule({
   declarations: [
     InstructorRegisterComponent,
-    CardsOfInstructorsComponent,
-   
+    CardsOfInstructorsComponent,   
   ],
   imports: [
     CommonModule,
@@ -27,6 +26,10 @@ import { CardsOfInstructorsComponent } from './cards-of-instructors/cards-of-ins
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  exports:
+  [
+    CardsOfInstructorsComponent
   ]
 })
 export class InstructorModule { }
