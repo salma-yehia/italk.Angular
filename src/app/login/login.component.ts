@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit{
         this.Token=data
 
         localStorage.setItem('userToken' , this.Token.token);
-        console.log(data);
+        //console.log(data);
         this.loginService.saveUserData();
         
         // Redirect to /students route
