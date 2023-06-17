@@ -1,41 +1,33 @@
-<p>cards-of-instructors works!</p>
-<div class="container">
-    <h3>Select a Language:</h3>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Select Language
-      </button>
-      <div class="dropdown-menu" aria-labelledby="languageDropdown">
-        <a class="dropdown-item" href="#" (click)="selectOption(1)">Option 1</a>
-        <a class="dropdown-item" href="#" (click)="selectOption(2)">Option 2</a>
+    <div class="container">
+      <h3>Select a Language:</h3>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Language
+        </button>
+        <div class="dropdown-menu" aria-labelledby="languageDropdown">
+          <a class="dropdown-item" href="#" (click)="selectOption(1)">English</a>
+          <a class="dropdown-item" href="#" (click)="selectOption(2)">Germany</a>
+        </div>
       </div>
     </div>
-  </div>
-  <br> 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let card of cards">
-        <div class="card">
-          <img [src]="card.image" class="card-img-top" alt="Card Image">
-          <div class="card-body">
-            <h5 class="card-title">{{ card.title }}</h5>
-            <p class="card-text">{{ card.description }}</p>
-            <a href="#" class="btn btn-primary">Read More</a>
-          </div>
+    <br> 
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let instructor of cards">
+      <div class="card">
+        <img [src]="instructor.imgName" class="card-img-top" alt="Card Image">
+        <div class="card-body">
+          <h5 class="card-title">{{instructor.userName}}</h5>
+          <p class="card-text"> 
+            <span *ngIf="instructor.gender === 1">Male</span>
+            <span *ngIf="instructor.gender === 2">Female</span>
+          </p>
+          <a href="#" class="btn btn-primary">Read More</a>
+          <span style="margin: 0 10px;"></span>
+          <a href="#" class="btn btn-success">Enroll</a>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dropdown button
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-  </div>
-  
-  
+</div>
