@@ -26,6 +26,8 @@ export class CardsOfInstructorsComponent implements OnInit {
       languageId = 1;
     } else if (option === 2) {
       languageId = 2;
+    } else if (option === 3) {
+      languageId = 3;
     } 
     else {
       languageId = 1;
@@ -35,13 +37,19 @@ export class CardsOfInstructorsComponent implements OnInit {
       
       instructor => {
         this.cards = instructor;
-        console.log(this.cards);
       },
       
       // error => {
       //   console.error('Error fetching instructors:', error);
       // }
     );
-    console.log(option);
+    
   }
+  enrollInstructor(instructorId: number): void {
+    // Call the appropriate function in the InstructorService with the instructorId
+    this.instructorService.getReservationForInstructor(instructorId).subscribe(
+      
+    );
+  }
+
 }
