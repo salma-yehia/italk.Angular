@@ -20,13 +20,9 @@ import { InstructorModule } from './instructor/instructor.module';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-<<<<<<< HEAD
-    AuthenticationModule,
+    // AuthenticationModule,
     BrowserAnimationsModule,
     InstructorModule
-=======
-    BrowserAnimationsModule
->>>>>>> 4f436acb65a714c5b9f2753855c15db597745d57
   ],
   providers: [],
   bootstrap: [AppComponent]
