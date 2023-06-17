@@ -20,7 +20,6 @@ import { InstructorModule } from './instructor/instructor.module';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // AuthenticationModule,
     BrowserAnimationsModule,
     InstructorModule
   ],
