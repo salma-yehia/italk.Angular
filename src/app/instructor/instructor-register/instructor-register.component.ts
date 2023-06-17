@@ -120,19 +120,19 @@ export class InstructorRegisterComponent implements OnInit {
   }
 
   registerData(e:Event): void {
-    this.registerInstructor.UserName=this.UserName?.value
-    this.registerInstructor.Gender=+this.Gender?.value
-    this.registerInstructor.Password=this.Password?.value
-    this.registerInstructor.Appointment=this.Appointment?.value
-    this.registerInstructor.Degree=this.Degree?.value
-    this.registerInstructor.Descroption=this.Descroption?.value
-    this.registerInstructor.Email=this.Email?.value
-    this.registerInstructor.Experience=this.Experience?.value
-    this.registerInstructor.ExtraCourses=this.ExtraCourses?.value
-    this.registerInstructor.Imgname=this.Imgname?.value
-    this.registerInstructor.Nationality=this.Nationality?.value
-    this.registerInstructor.TeachingCertificate=this.TeachingCertificate?.value
-    this.registerInstructor.LanguageId=this.LanguageId?.value
+    this.registerInstructor.userName=this.UserName?.value
+    this.registerInstructor.gender=+this.Gender?.value
+    this.registerInstructor.password=this.Password?.value
+    this.registerInstructor.appointment=this.Appointment?.value
+    this.registerInstructor.degree=this.Degree?.value
+    this.registerInstructor.descroption=this.Descroption?.value
+    this.registerInstructor.email=this.Email?.value
+    this.registerInstructor.experience=this.Experience?.value
+    this.registerInstructor.extraCourses=this.ExtraCourses?.value
+    this.registerInstructor.imgName=this.Imgname?.value
+    this.registerInstructor.nationality=this.Nationality?.value
+    this.registerInstructor.teachingCertificate=this.TeachingCertificate?.value
+    this.registerInstructor.languageId=this.LanguageId?.value
 
     this.instructorService.createInstructor(this.registerInstructor).subscribe({
       next: (data) => {

@@ -12,7 +12,7 @@ export class InstructorService {
 
   private registerUrl = `https://localhost:7137/api/User`;
   private reservationUrl =`https://localhost:7137/api/Instructor/GetReservationForInstructor`;
-
+  private showInstructorsUrl=`https://localhost:7137/api/Instructor/GetInstructorsForLanguage`;
   constructor(private http : HttpClient) { }
 
   createInstructor(instructor: Instructor): Observable<void> {
@@ -22,6 +22,11 @@ export class InstructorService {
   getReservationForInstructor(id : number):Observable<Reservation[]>{
     const url = `${this.reservationUrl}/${id}`;
     return this.http.get<Reservation[]>(url);
+  }
+  getInstructorsForLanguage(languageId:number):Observable<Instructor[]>
+  {
+    const url = `${this.showInstructorsUrl}/${languageId}`;
+    return this.http.get<Instructor[]>(url);
   }
   public uploadImage(image: File): Observable<UploadFile> {
     var form = new FormData();
