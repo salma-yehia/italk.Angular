@@ -25,6 +25,7 @@ export class AuthService {
   saveUserData(){
     let encodeUserData = JSON.stringify(localStorage.getItem('userToken'));
     this.userData.next(jwtDecode(encodeUserData));
+    console.log(this.userData);
   }
   Logout (){
     localStorage.removeItem('userToken');
