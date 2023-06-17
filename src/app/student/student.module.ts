@@ -26,7 +26,7 @@ import { StudentRoutingModule } from './student-routing.module';
     StudentRoutingModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
   ]
 })
 export class StudentModule { }

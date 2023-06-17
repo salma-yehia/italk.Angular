@@ -12,7 +12,11 @@ export class AuthService {
   private loginUrl = `https://localhost:7137/api/User`;
   userData = new BehaviorSubject (null);
 
-  constructor(private http : HttpClient , private router : Router) { }
+  constructor(private http : HttpClient , private router : Router) { 
+    if(localStorage.getItem('userToken')!=null){
+      this.saveUserData();
+    }
+  }
   Login(login: Login): Observable<Token> {
     const url = `${this.loginUrl}/Login`;
     return this.http.post<Token>(url , login);
