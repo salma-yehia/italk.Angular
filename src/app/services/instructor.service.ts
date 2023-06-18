@@ -13,11 +13,16 @@ export class InstructorService {
   private registerUrl = `https://localhost:7137/api/User`;
   private reservationUrl =`https://localhost:7137/api/Instructor/GetReservationForInstructor`;
   private showInstructorsUrl=`https://localhost:7137/api/Instructor/GetInstructorsForLanguage`;
+  private createReservationUrl=`https://localhost:7137/api/Reservation/AddReservation`
   constructor(private http : HttpClient) { }
 
   createInstructor(instructor: Instructor): Observable<void> {
     const url = `${this.registerUrl}/InstructorRegister`;
     return this.http.post<void>(url , instructor);
+  }
+  createReservation(reservation:Reservation): Observable<void> {
+    const url = `${this.createReservationUrl}`;
+    return this.http.post<void>(url , reservation);
   }
   getReservationForInstructor(id : number):Observable<Reservation[]>{
     const url = `${this.reservationUrl}/${id}`;

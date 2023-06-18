@@ -27,6 +27,11 @@ export class AuthService {
     this.userData.next(jwtDecode(encodeUserData));
     console.log(this.userData);
   }
+  
+  getUserId(): Observable<number | null> {
+    return this.userData.asObservable();
+  }
+
   Logout (){
     localStorage.removeItem('userToken');
     this.userData.next(null);
