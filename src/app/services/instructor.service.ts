@@ -20,9 +20,9 @@ export class InstructorService {
     const url = `${this.registerUrl}/InstructorRegister`;
     return this.http.post<void>(url , instructor);
   }
-  createReservation(reservation:Reservation): Observable<void> {
+  createReservation(reservation:Reservation): Observable<number> {
     const url = `${this.createReservationUrl}`;
-    return this.http.post<void>(url , reservation);
+    return this.http.post<number>(url , reservation);
   }
   getReservationForInstructor(id : number):Observable<Reservation[]>{
     const url = `${this.reservationUrl}/${id}`;

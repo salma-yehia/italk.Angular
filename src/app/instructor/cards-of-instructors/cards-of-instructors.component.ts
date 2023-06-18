@@ -53,7 +53,8 @@ export class CardsOfInstructorsComponent implements OnInit {
     );
   }
 
-  enrollInstructor(instructorId: number): void {
+  enrollInstructor(instructorId: number,event: Event): void {
+    event.preventDefault();
     this.authService.getUserId().subscribe(
       userId => {
         if (userId) {
@@ -62,6 +63,7 @@ export class CardsOfInstructorsComponent implements OnInit {
             instructorId: instructorId,
             appointment: new Date()
           };
+          console.log(reservation);
       
           this.instructorService.createReservation(reservation).subscribe(
             () => {
