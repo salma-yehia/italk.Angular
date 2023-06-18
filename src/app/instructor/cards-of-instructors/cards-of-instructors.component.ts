@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Instructor } from 'src/app/models/instructor';
+import { Reservation } from 'src/app/models/reservation';
+import { AuthService } from 'src/app/services/auth.service';
 import { InstructorService } from 'src/app/services/instructor.service';
 import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-cards-of-instructors',
@@ -11,14 +14,14 @@ import jwt_decode from 'jwt-decode';
 export class CardsOfInstructorsComponent implements OnInit {
   cards: Instructor[] = [];
 
-  constructor(private instructorService: InstructorService) {}
+  constructor(private instructorService: InstructorService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getInstructorsForLanguage(0);
   }
 
   selectOption(option: number, event: Event): void {
-    event.preventDefault(); // Prevent default behavior of the click event
+    event.preventDefault(); 
     this.getInstructorsForLanguage(option);
   }
   
@@ -41,22 +44,37 @@ export class CardsOfInstructorsComponent implements OnInit {
       console.log(userId);
     }    
     this.instructorService.getInstructorsForLanguage(languageId).subscribe(
-      
-      instructor => {
-        this.cards = instructor;
+      instructors => {
+        this.cards = instructors;
       },
-      
-      // error => {
-      //   console.error('Error fetching instructors:', error);
-      // }
-    );
-    
-  }
-  enrollInstructor(instructorId: number): void {
-    // Call the appropriate function in the InstructorService with the instructorId
-    this.instructorService.getReservationForInstructor(instructorId).subscribe(
-      
+      error => {
+        console.error('Error fetching instructors:', error);
+      }
     );
   }
 
+  enrollInstructor(instructorId: number): void {
+    this.authService.getUserId().subscribe(
+      userId => {
+        if (userId) {
+          const reservation: Reservation = {
+            studentId: userId,
+            instructorId: instructorId,
+            appointment: new Date()
+          };
+      
+          this.instructorService.createReservation(reservation).subscribe(
+            () => {
+              console.log('Reservation created successfully!');
+            },
+            error => {
+              console.error('Error creating reservation:', error);
+            }
+          );
+        } else {
+          // Handle the case where the user is not logged in or the ID is not available
+        }
+      }
+    );
+  }
 }
