@@ -41,9 +41,9 @@ export class CardsOfInstructorsComponent implements OnInit {
       instructors => {
         this.cards = instructors;
       },
-      error => {
-        console.error('Error fetching instructors:', error);
-      }
+      // error => {
+      //   console.error('Error fetching instructors:', error);
+      // }
     );
   }
 
@@ -61,9 +61,9 @@ export class CardsOfInstructorsComponent implements OnInit {
             () => {
               console.log('Reservation created successfully!');
             },
-            error => {
-              console.error('Error creating reservation:', error);
-            }
+            // error => {
+            //   console.error('Error creating reservation:', error);
+            // }
           );
         } else {
           // Handle the case where the user is not logged in or the ID is not available
