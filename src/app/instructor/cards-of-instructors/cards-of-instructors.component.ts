@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Instructor } from 'src/app/models/instructor';
 import { InstructorService } from 'src/app/services/instructor.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-cards-of-instructors',
@@ -33,7 +34,12 @@ export class CardsOfInstructorsComponent implements OnInit {
     else {
       languageId = option;
     }
-
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      const decodedToken: any = jwt_decode(token);
+      const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+      console.log(userId);
+    }    
     this.instructorService.getInstructorsForLanguage(languageId).subscribe(
       
       instructor => {
