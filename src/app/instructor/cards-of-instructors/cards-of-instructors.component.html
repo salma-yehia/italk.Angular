@@ -1,18 +1,19 @@
-    <div class="container">
-      <h3>Select a Language:</h3>
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select Language
-        </button>
-        <div class="dropdown-menu" aria-labelledby="languageDropdown">
-          <a class="dropdown-item" href="#" (click)="selectOption(1)">English</a>
-          <a class="dropdown-item" href="#" (click)="selectOption(2)">Germany</a>
-          <a class="dropdown-item" href="#" (click)="selectOption(3)">France</a>
-        </div>
-      </div>
+<div class="container">
+  <h3>Select a Language:</h3>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Select Language
+    </button>
+    <div class="dropdown-menu" aria-labelledby="languageDropdown">
+      <a class="dropdown-item" href="#" (click)="selectOption(0,$event)">Select Option</a>
+      <a class="dropdown-item" href="#" (click)="selectOption(1,$event)">English</a>
+      <a class="dropdown-item" href="#" (click)="selectOption(2,$event)">Germany</a>
+      <a class="dropdown-item" href="#" (click)="selectOption(3,$event)">France</a>
     </div>
-    <br> 
+  </div>
+</div>
 <br>
+
 <div class="container">
   <div class="row">
     <div class="col-md-4" *ngFor="let instructor of cards">
@@ -20,7 +21,7 @@
         <img [src]="instructor.imgName" class="card-img-top" alt="Card Image">
         <div class="card-body">
           <h5 class="card-title">{{instructor.userName}}</h5>
-          <p class="card-text"> 
+          <p class="card-text">
             <span *ngIf="instructor.gender === 1">Male</span>
             <span *ngIf="instructor.gender === 2">Female</span>
           </p>

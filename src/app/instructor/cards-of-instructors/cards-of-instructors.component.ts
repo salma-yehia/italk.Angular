@@ -16,21 +16,22 @@ export class CardsOfInstructorsComponent implements OnInit {
     this.getInstructorsForLanguage(0);
   }
 
-  selectOption(option: number): void {
+  selectOption(option: number, event: Event): void {
+    event.preventDefault(); // Prevent default behavior of the click event
     this.getInstructorsForLanguage(option);
   }
-
+  
   private getInstructorsForLanguage(option: number): void {
     let languageId: number;
-    if (option === 1) {
+    if (option == 1) {
       languageId = 1;
-    } else if (option === 2) {
+    } else if (option == 2) {
       languageId = 2;
-    } else if (option === 3) {
+    } else if (option == 3) {
       languageId = 3;
     } 
     else {
-      languageId = 1;
+      languageId = option;
     }
 
     this.instructorService.getInstructorsForLanguage(languageId).subscribe(
