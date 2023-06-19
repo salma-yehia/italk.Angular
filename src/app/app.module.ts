@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InstructorModule } from './instructor/instructor.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StudentModule } from './student/student.module';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { InstructorModule } from './instructor/instructor.module';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    InstructorModule
+    InstructorModule,
+    NgbModule,
+    StudentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

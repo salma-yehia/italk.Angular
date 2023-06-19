@@ -8,16 +8,19 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { StudentRoutingModule } from './student-routing.module';
+import { EnrollmentSuccessModelComponent } from './enrollment-success-model/enrollment-success-model.component';
 
 
 @NgModule({
   declarations: [
     StudentRegisterComponent,
-    StudentHomeComponent
+    StudentHomeComponent,
+    EnrollmentSuccessModelComponent
   ],
   exports :[
     StudentRegisterComponent,
-    StudentHomeComponent
+    StudentHomeComponent,
+    EnrollmentSuccessModelComponent
   ],
   imports: [
     CommonModule,

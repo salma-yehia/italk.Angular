@@ -1,20 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Instructor } from 'src/app/models/instructor';
 import { Reservation } from 'src/app/models/reservation';
 import { AuthService } from 'src/app/services/auth.service';
 import { InstructorService } from 'src/app/services/instructor.service';
 import jwt_decode from 'jwt-decode';
+import { NgbModal,NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { EnrollmentSuccessModelComponent } from 'src/app/student/enrollment-success-model/enrollment-success-model.component';
+
+
 
 
 @Component({
   selector: 'app-cards-of-instructors',
   templateUrl: './cards-of-instructors.component.html',
-  styleUrls: ['./cards-of-instructors.component.css']
+  styleUrls: ['./cards-of-instructors.component.css'],
+  // entryComponents: [EnrollmentSuccessModelComponent],
 })
 export class CardsOfInstructorsComponent implements OnInit {
   cards: Instructor[] = [];
+  modalRef!: NgbModalRef
 
-  constructor(private instructorService: InstructorService, private authService: AuthService) {}
+  constructor(private instructorService: InstructorService, private authService: AuthService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.getInstructorsForLanguage(0);
@@ -37,12 +43,7 @@ export class CardsOfInstructorsComponent implements OnInit {
     else {
       languageId = option;
     }
-    const token = localStorage.getItem('userToken');
-    if (token) {
-      const decodedToken: any = jwt_decode(token);
-      const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-      console.log(userId);
-    }    
+     
     this.instructorService.getInstructorsForLanguage(languageId).subscribe(
       instructors => {
         this.cards = instructors;
@@ -53,30 +54,47 @@ export class CardsOfInstructorsComponent implements OnInit {
     );
   }
 
-  enrollInstructor(instructorId: number,event: Event): void {
-    event.preventDefault();
-    this.authService.getUserId().subscribe(
-      userId => {
-        if (userId) {
+  enrollInstructor(instructor: Instructor,event: Event): void {
+    event.preventDefault();   
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      const decodedToken: any = jwt_decode(token);
+      const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+      console.log(userId);
+     
           const reservation: Reservation = {
             studentId: userId,
-            instructorId: instructorId,
+            instructorId: instructor.id,
             appointment: new Date()
           };
           console.log(reservation);
+          console.log(instructor);
       
           this.instructorService.createReservation(reservation).subscribe(
             () => {
               console.log('Reservation created successfully!');
+              console.log(reservation);
+              this.openSuccessModal();
             },
             // error => {
             //   console.error('Error creating reservation:', error);
             // }
           );
-        } else {
-          // Handle the case where the user is not logged in or the ID is not available
-        }
-      }
-    );
+        
+        } 
+   
+  }
+  openSuccessModal(): void {
+    const modalRef = this.modalService.open(EnrollmentSuccessModelComponent , { centered: true });
+  modalRef.result.then(
+    () => {
+      // Modal closed
+      console.log('Modal closed');
+    },
+    () => {
+      // Modal dismissed
+      console.log('Modal dismissed');
+    }
+  );
   }
 }

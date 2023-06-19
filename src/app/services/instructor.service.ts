@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { Instructor } from '../models/instructor';
 import { Reservation } from '../models/reservation';
 import { UploadFile } from '../models/upload-file';
@@ -24,6 +24,20 @@ export class InstructorService {
     const url = `${this.createReservationUrl}`;
     return this.http.post<number>(url , reservation);
   }
+  // createReservation(reservation: Reservation): Observable<number> {
+  //   const url = `${this.createReservationUrl}`;
+  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    
+  //   return this.http.post<number>(url, reservation, { headers }).pipe(
+  //     catchError((error) => {
+  //       // Handle the error here (e.g., log the error, show a user-friendly message)
+  //       console.error('Error creating reservation:', error);
+        
+  //       // Return a default value or an appropriate response
+  //       return of(0);
+  //     })
+  //   );
+  // }
   getReservationForInstructor(id : number):Observable<Reservation[]>{
     const url = `${this.reservationUrl}/${id}`;
     return this.http.get<Reservation[]>(url);

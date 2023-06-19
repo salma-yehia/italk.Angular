@@ -9,6 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardsOfInstructorsComponent } from './cards-of-instructors/cards-of-instructors.component';
+import { StudentModule } from '../student/student.module';
 
 
 
@@ -25,7 +26,8 @@ import { CardsOfInstructorsComponent } from './cards-of-instructors/cards-of-ins
     MatButtonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    StudentModule
   ],
   exports:
   [
