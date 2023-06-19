@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Student } from '../models/student';
 import { Observable } from 'rxjs';
-import { Reservation } from '../models/reservation';
+import { GetReservation } from '../models/get-reservation';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,9 @@ export class StudentService {
     const url = `${this.registerUrl}/StudentRegister`;
     return this.http.post<void>(url , student);
   }
-  getReservationForStudent(id : number):Observable<Reservation[]>{
+  getReservationForStudent(id : number):Observable<GetReservation[]>{
     const url = `${this.reservationUrl}/${id}`;
-    return this.http.get<Reservation[]>(url);
+    return this.http.get<GetReservation[]>(url);
   }
 
 }

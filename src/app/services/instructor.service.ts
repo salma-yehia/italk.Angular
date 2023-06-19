@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GetReservation } from '../models/get-reservation';
 import { Instructor } from '../models/instructor';
 import { Reservation } from '../models/reservation';
 import { UploadFile } from '../models/upload-file';
@@ -24,9 +25,9 @@ export class InstructorService {
     const url = `${this.createReservationUrl}`;
     return this.http.post<number>(url , reservation);
   }
-  getReservationForInstructor(id : number):Observable<Reservation[]>{
+  getReservationForInstructor(id : number):Observable<GetReservation[]>{
     const url = `${this.reservationUrl}/${id}`;
-    return this.http.get<Reservation[]>(url);
+    return this.http.get<GetReservation[]>(url);
   }
   getInstructorsForLanguage(languageId:number):Observable<Instructor[]>
   {

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl , FormGroup , Validators } from '@angular/form
 import{Router} from '@angular/router';
 import{AuthService} from 'src/app/services/auth.service'
 import { Login } from '../models/login';
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -46,9 +47,19 @@ export class LoginComponent implements OnInit{
         localStorage.setItem('userToken' , this.Token.token);
         //console.log(data);
         this.loginService.saveUserData();
-        
-        // Redirect to /students route
-        this.router.navigate(['/students']);
+        const token = localStorage.getItem('userToken');
+        if (token) {
+          const decodedToken: any = jwt_decode(token);
+          const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+          if(role == 'student'){
+              // Redirect to /students route
+              this.router.navigate(['/students']);
+          }
+          else if(role == 'instructor'){
+            // Redirect to /instructors route
+            this.router.navigate(['/instructors']);
+        }
+        } 
       },
       error: (err) => this.errorMessage = err
     });

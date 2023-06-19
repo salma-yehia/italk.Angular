@@ -9,13 +9,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardsOfInstructorsComponent } from './cards-of-instructors/cards-of-instructors.component';
+import { InstructotHomeComponent } from './instructot-home/instructot-home.component';
 
 
 
 @NgModule({
   declarations: [
     InstructorRegisterComponent,
-    CardsOfInstructorsComponent,   
+    CardsOfInstructorsComponent,
+    InstructotHomeComponent,   
   ],
   imports: [
     CommonModule,
