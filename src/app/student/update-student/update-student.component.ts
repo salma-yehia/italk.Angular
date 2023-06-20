@@ -46,8 +46,8 @@ if (token) {
     age: this.updateStudentForm.get('age')?.value,
     level: this.updateStudentForm.get('level')?.value,
     id:userId,
-    email: "undefined",
-    password: "undefined"
+    email:this.updateStudentForm.get('email')?.value ,
+    password:this.updateStudentForm.get('password')?.value  
   };
   // Assuming you have the updated student data available in the 'updatedStudent' variable
   this.studentService.updateStudentById(userId, updatedStudent).subscribe(
