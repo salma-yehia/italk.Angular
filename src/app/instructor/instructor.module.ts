@@ -11,8 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardsOfInstructorsComponent } from './cards-of-instructors/cards-of-instructors.component';
 import { InstructotHomeComponent } from './instructot-home/instructot-home.component';
 import { StudentModule } from '../student/student.module';
-
-
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,8 @@ import { StudentModule } from '../student/student.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    StudentModule
+    StudentModule,
+    MatNativeDateModule,
   ],
   exports:
   [

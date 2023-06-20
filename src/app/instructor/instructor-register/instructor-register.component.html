@@ -56,7 +56,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Appointment</mat-label>
-    <input type="date" matInput formControlName="Appointment">
+    <input type="datetime-local" matInput formControlName="Appointment">
     <mat-error *ngIf="isControlError('Appointment', 'required')">
       Appointment is <strong>required.</strong>
     </mat-error>
