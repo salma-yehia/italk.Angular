@@ -1,9 +1,9 @@
 export interface Student {
-      Id : number;
-      UserName : String;
-      Gender : number;
-      Email : String;
-      Age : number;
-      Password : String;
-      Level : String;
+      id : number;
+      userName : String;
+      gender : number;
+      email : String;
+      age : number;
+      password : String;
+      level : String;
 }

@@ -5,21 +5,25 @@ import { Observable } from 'rxjs';
 import { GetReservation } from '../models/get-reservation';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StudentService {
   private registerUrl = `https://localhost:7137/api/User`;
-  private reservationUrl =`https://localhost:7137/api/Student/GetReservationForStudent`;
+  private reservationUrl = `https://localhost:7137/api/Student/GetReservationForStudent`;
+  private updateStudentUrl = `https://localhost:7137/api/User/UpdateStudent`;
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   createStudent(student: Student): Observable<void> {
     const url = `${this.registerUrl}/StudentRegister`;
-    return this.http.post<void>(url , student);
+    return this.http.post<void>(url, student);
   }
-  getReservationForStudent(id : number):Observable<GetReservation[]>{
+  getReservationForStudent(id: number): Observable<GetReservation[]> {
     const url = `${this.reservationUrl}/${id}`;
     return this.http.get<GetReservation[]>(url);
   }
-
+  updateStudentById(id: number, student: Student): Observable<Student[]> {
+    const url = `${this.updateStudentUrl}/${id}`;
+    return this.http.put<Student[]>(url, student);
+  }
 }
