@@ -1,0 +1,30 @@
+<h2>Update Student</h2>
+
+<form [formGroup]="updateStudentForm" (ngSubmit)="updateStudent()" class="update-student-form">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email" required class="form-control">
+  </div> 
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <input type="number" id="gender" formControlName="gender" required class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" id="age" formControlName="age" required class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="level">Level</label>
+    <input type="text" id="level" formControlName="level" required class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="userName">Username</label>
+    <input type="text" id="userName" formControlName="userName" required class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password" required class="form-control">
+  </div>
+
+  <button type="submit" [disabled]="updateStudentForm.invalid" class="btn btn-primary">Update Student</button>
+</form>

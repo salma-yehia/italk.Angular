@@ -70,12 +70,12 @@ export class StudentRegisterComponent implements OnInit {
   }
 
   registerData(): void {
-    this.registerStudent.UserName=this.UserName?.value
-    this.registerStudent.Gender=+this.Gender?.value
-    this.registerStudent.Password=this.Password?.value
-    this.registerStudent.Level=this.Level?.value
-    this.registerStudent.Age=this.Age?.value
-    this.registerStudent.Email=this.Email?.value
+    this.registerStudent.userName=this.UserName?.value
+    this.registerStudent.gender=+this.Gender?.value
+    this.registerStudent.password=this.Password?.value
+    this.registerStudent.level=this.Level?.value
+    this.registerStudent.age=this.Age?.value
+    this.registerStudent.email=this.Email?.value
 
     console.log(this.registerStudent);
     this.studentService.createStudent(this.registerStudent).subscribe({
