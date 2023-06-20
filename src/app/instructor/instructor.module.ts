@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardsOfInstructorsComponent } from './cards-of-instructors/cards-of-instructors.component';
 import { InstructotHomeComponent } from './instructot-home/instructot-home.component';
 import { StudentModule } from '../student/student.module';
+import { UpdateInstructorComponent } from './update-instructor/update-instructor.component';
 
 
 
@@ -18,7 +19,8 @@ import { StudentModule } from '../student/student.module';
   declarations: [
     InstructorRegisterComponent,
     CardsOfInstructorsComponent,
-    InstructotHomeComponent,   
+    InstructotHomeComponent,
+    UpdateInstructorComponent,   
   ],
   imports: [
     CommonModule,

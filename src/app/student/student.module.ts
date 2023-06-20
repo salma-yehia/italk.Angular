@@ -9,13 +9,15 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import { StudentRoutingModule } from './student-routing.module';
 import { EnrollmentSuccessModelComponent } from './enrollment-success-model/enrollment-success-model.component';
+import { UpdateStudentComponent } from './update-student/update-student.component';
 
 
 @NgModule({
   declarations: [
     StudentRegisterComponent,
     StudentHomeComponent,
-    EnrollmentSuccessModelComponent
+    EnrollmentSuccessModelComponent,
+    UpdateStudentComponent
   ],
   exports :[
     StudentRegisterComponent,
