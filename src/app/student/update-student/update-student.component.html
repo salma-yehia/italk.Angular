@@ -1,30 +1,73 @@
-<h2>Update Student</h2>
+<h1>Update Student</h1>
+<form [formGroup]="updateForm" class="example-form">
 
-<form [formGroup]="updateStudentForm" (ngSubmit)="updateStudent()" class="update-student-form">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" formControlName="email" required class="form-control">
-  </div> 
-  <div class="form-group">
-    <label for="gender">Gender</label>
-    <input type="number" id="gender" formControlName="gender" required class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="age">Age</label>
-    <input type="number" id="age" formControlName="age" required class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="level">Level</label>
-    <input type="text" id="level" formControlName="level" required class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="userName">Username</label>
-    <input type="text" id="userName" formControlName="userName" required class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" id="password" formControlName="password" required class="form-control">
-  </div>
+  <mat-form-field class="example-full-width">
+    <mat-label>UserName</mat-label>
+    <input type="text" matInput formControlName="UserName">
+    <mat-error *ngIf="isControlError('UserName', 'pattern')">
+      Username should contain only characters or digits.
+    </mat-error>
+    <mat-error *ngIf="isControlError('UserName', 'required')">
+      Username is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+      
+  <mat-form-field>
+    <mat-label>Select your gender</mat-label>
+    <select matNativeControl required formControlName="Gender">
+      <option label="--select gender --" disabled></option>
+      <option *ngFor="let gender of genderValues" [value]="gender">
+        {{ genderEnum[+gender] }}
+        </option>
+    </select>
+    <mat-error *ngIf="isControlError('Gender', 'required')">
+      Gender is required
+    </mat-error>
+  </mat-form-field>
+      
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput formControlName="Email">
+    <mat-error *ngIf="isControlError('Email', 'email')">
+      Enter a valid Email
+    </mat-error>
+    <mat-error *ngIf="isControlError('Email', 'required')">
+      Email is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
 
-  <button type="submit" [disabled]="updateStudentForm.invalid" class="btn btn-primary">Update Student</button>
-</form>
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput formControlName="Password">
+    <mat-error *ngIf="isControlError('Password', 'pattern')">
+      Password should contain at least one character.
+    </mat-error>
+    <mat-error *ngIf="isControlError('Password', 'required')">
+      Password is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+      
+  <mat-form-field class="example-full-width">
+    <mat-label>Age</mat-label>
+    <input type="number" matInput formControlName="Age">
+    <mat-error *ngIf="isControlError('Age', 'required')">
+      Age is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Level</mat-label>
+    <input type="text" matInput formControlName="Level">
+    <mat-error *ngIf="isControlError('Level', 'required')">
+      Level is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+  
+      <div class="alert alert-danger" *ngIf="updateForm.invalid && (updateForm.dirty)">
+          Please fix the errors in the form.
+      </div>
+      
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="updateData()">Update</button>
+      </div>
+  </form>    

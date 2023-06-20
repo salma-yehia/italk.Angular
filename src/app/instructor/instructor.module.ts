@@ -14,7 +14,6 @@ import { StudentModule } from '../student/student.module';
 import { UpdateInstructorComponent } from './update-instructor/update-instructor.component';
 
 
-
 @NgModule({
   declarations: [
     InstructorRegisterComponent,
