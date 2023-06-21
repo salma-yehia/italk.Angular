@@ -17,7 +17,8 @@ export class InstructorService {
   private createReservationUrl=`https://localhost:7137/api/Reservation/AddReservation`
   private updateInstructorUrl = `https://localhost:7137/api/User/UpdateInstructor`;
   private getInstructorById  = `https://localhost:7137/api/Instructor/GetInstructorById`; 
-  
+  private checkAppointmentUrl=`https://localhost:7137/api/Reservation/CheckAppointment`;
+
   constructor(private http : HttpClient) { }
 
   createInstructor(instructor: Instructor): Observable<void> {
@@ -63,5 +64,10 @@ export class InstructorService {
   GetInstructorById(id : number):Observable<Instructor>{
     const url = `${this.getInstructorById}/${id}`;
     return this.http.get<Instructor>(url);
+  }
+  checkAppointment(reservation:Reservation):Observable<boolean>
+  {
+     const url=`${this.checkAppointmentUrl}`;
+     return this.http.post<boolean>(url,reservation)
   }
 }

@@ -7,8 +7,7 @@ import jwt_decode from 'jwt-decode';
 import { NgbModal,NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EnrollmentSuccessModelComponent } from 'src/app/student/enrollment-success-model/enrollment-success-model.component';
 import { Router } from '@angular/router';
-
-
+import { switchMap } from 'rxjs';
 
 
 @Component({
@@ -55,49 +54,59 @@ export class CardsOfInstructorsComponent implements OnInit {
     );
   }
 
-  enrollInstructor(instructor: Instructor,event: Event): void {
-    event.preventDefault();   
-    const token = localStorage.getItem('userToken');
-    if (token) {
-      const decodedToken: any = jwt_decode(token);
-      const userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-      console.log(userId);
-     
-          const reservation: Reservation = {
-            studentId: userId,
-            instructorId: instructor.id,
-            appointment: new Date()
-          };
-          console.log(reservation);
-          console.log(instructor);
-      
-          this.instructorService.createReservation(reservation).subscribe(
-            () => {
-              console.log('Reservation created successfully!');
-              console.log(reservation);
-              this.openSuccessModal();
+  enrollInstructor(instructor: Instructor, event: Event): void {
+      event.preventDefault();
+      const token = localStorage.getItem('userToken');
+      if (token) {
+        const decodedToken: any = jwt_decode(token);
+        const userId =
+          decodedToken[
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+          ];
+        console.log(userId);
+  
+        const reservation: Reservation = {
+          studentId: userId,
+          instructorId: instructor.id,
+          appointment: new Date(),
+        };
+        console.log(reservation);
+        console.log(instructor);
+  
+        this.instructorService
+          .createReservation(reservation)
+          .pipe(
+            switchMap(() => this.instructorService.checkAppointment(reservation))
+          )
+          .subscribe(
+            (isAppointmentAvailable) => {
+              if (isAppointmentAvailable) {
+                console.log('Reservation created successfully!');
+                console.log(reservation);
+              } else {
+                console.log('Appointment not available');
+              }
             },
-            // error => {
-            //   console.error('Error creating reservation:', error);
-            // }
+            (error) => {
+              console.error('Error creating reservation:', error);
+            }
           );
-        
-        } 
-   
-  }
-  openSuccessModal(): void {
-    const modalRef = this.modalService.open(EnrollmentSuccessModelComponent , { centered: true });
-  modalRef.result.then(
-    () => {
-      // Modal closed
-      console.log('Modal closed');
-    },
-    () => {
-      // Modal dismissed
-      console.log('Modal dismissed');
+      }
     }
-  );
-  }
+    
+    openSuccessModal(): void {
+        const modalRef = this.modalService.open(EnrollmentSuccessModelComponent , { centered: true });
+      modalRef.result.then(
+        () => {
+          // Modal closed
+          console.log('Modal closed');
+        },
+        () => {
+          // Modal dismissed
+          console.log('Modal dismissed');
+        }
+      );
+      }
   getInstructorDetails(instructorId: number): void {
         this.instructorService.GetInstructorById(instructorId).subscribe({
 
