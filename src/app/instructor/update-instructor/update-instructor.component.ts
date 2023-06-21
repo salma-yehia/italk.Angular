@@ -18,6 +18,7 @@ export class UpdateInstructorComponent implements OnInit{
   updateInstructor:Instructor={} as Instructor;
   errorMessage:string="";
   userId : number = 0;
+  instructor : Instructor = {} as Instructor;
   selectedLanguageId: string = "";
   imageUrl:String = '';
   certUrl : String = '';
@@ -116,6 +117,29 @@ export class UpdateInstructorComponent implements OnInit{
     if (token) {
       const decodedToken: any = jwt_decode(token);
       this.userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+
+      this.instructorService.GetInstructorById(this.userId).subscribe(
+        (data: Instructor) => {
+          this.instructor = data;
+          console.log(this.instructor);
+          this.UserName?.setValue(this.instructor.userName);
+          this.Email?.setValue(this.instructor.email);
+          this.Gender?.setValue(this.instructor.gender);
+          this.Degree?.setValue(this.instructor.degree);
+          this.Appointment?.setValue(this.instructor.appointment);
+          this.Nationality?.setValue(this.instructor.nationality);
+          this.Descroption?.setValue(this.instructor.descroption);
+          this.Imgname?.setValue(this.instructor.imgName);
+          this.Experience?.setValue(this.instructor.experience);
+          this.TeachingCertificate?.setValue(this.instructor.teachingCertificate);
+          this.ExtraCourses?.setValue(this.instructor.extraCourses);
+          this.LanguageId?.setValue(this.instructor.languageId);
+          this.Password?.setValue('');
+        },
+        (error: any) => {
+          console.error('An error occurred while retrieving instructor details:', error);
+        }
+      );
 }
   }
 

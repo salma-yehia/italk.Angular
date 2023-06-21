@@ -12,6 +12,7 @@ import { CardsOfInstructorsComponent } from './cards-of-instructors/cards-of-ins
 import { InstructotHomeComponent } from './instructot-home/instructot-home.component';
 import { StudentModule } from '../student/student.module';
 import { UpdateInstructorComponent } from './update-instructor/update-instructor.component';
+import { InstructorDetailsComponent } from './instructor-details/instructor-details.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UpdateInstructorComponent } from './update-instructor/update-instructor
     InstructorRegisterComponent,
     CardsOfInstructorsComponent,
     InstructotHomeComponent,
-    UpdateInstructorComponent,   
+    UpdateInstructorComponent,
+    InstructorDetailsComponent,   
   ],
   imports: [
     CommonModule,

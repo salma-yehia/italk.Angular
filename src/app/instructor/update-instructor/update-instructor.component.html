@@ -71,10 +71,10 @@
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <mat-label>Descroption</mat-label>
+      <mat-label>Description</mat-label>
       <input type="text" matInput formControlName="Descroption">
       <mat-error *ngIf="isControlError('Descroption', 'required')">
-        Descroption is <strong>required.</strong>
+        Description is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
   
@@ -84,7 +84,8 @@
       <span *ngIf="isControlError('Imgname', 'required')">
         Image is <strong>required.</strong></span>
     </div>
-  
+    <img [src]="Imgname?.value" alt="Instructor Image" [style.width.px]="350" [style.height.px]="150">
+
     <mat-form-field class="example-full-width">
       <mat-label>Experience</mat-label>
       <input type="text" matInput formControlName="Experience">
@@ -99,7 +100,8 @@
       <span *ngIf="isControlError('TeachingCertificate', 'required')">
         TeachingCertificate is <strong>required.</strong></span>
     </div>
-  
+    <img [src]="TeachingCertificate?.value" alt="Instructor TeachingCertificate" [style.width.px]="350" [style.height.px]="150">
+
     <mat-form-field class="example-full-width">
       <mat-label>ExtraCourses</mat-label>
       <input type="text" matInput formControlName="ExtraCourses">

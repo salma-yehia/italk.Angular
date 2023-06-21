@@ -20,7 +20,8 @@ enum Gender {
 export class StudentRegisterComponent implements OnInit {
   registerStudent:Student={} as Student;
   errorMessage:string="";
-  
+  student: Student = {} as Student ; 
+
   
   registerForm:FormGroup ;
   
@@ -95,5 +96,4 @@ export class StudentRegisterComponent implements OnInit {
     const control = this.registerForm.get(controlName);
     return control?.errors && control?.errors[errorName] && control?.touched;
   }
-  
 }

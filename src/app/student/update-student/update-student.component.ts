@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup , FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/student';
 import jwt_decode from 'jwt-decode';
@@ -18,11 +18,11 @@ export class UpdateStudentComponent implements OnInit {
   updateStudent:Student={} as Student;
   errorMessage:string="";
   userId : number = 0;
-  
+  student : Student = {} as Student;
   updateForm:FormGroup ;
   
 
-  constructor(private fb:FormBuilder,private studentService:StudentService,private router : Router){
+  constructor(private fb:FormBuilder,private studentService:StudentService,private router : Router , private activatedRoute : ActivatedRoute){
     this.updateForm=this.fb.group({
       UserName : new FormControl(null , [
         Validators.required , Validators.pattern(`^[A-Za-z0-9]*$`)
@@ -75,6 +75,7 @@ export class UpdateStudentComponent implements OnInit {
     this.studentService.updateStudentById(this.userId , this.updateStudent).subscribe({
       next: (data) => {
         console.log(data);
+        
         // Redirect to /students route
         this.router.navigate(['/students']);
       },
@@ -86,6 +87,26 @@ export class UpdateStudentComponent implements OnInit {
       if (token) {
         const decodedToken: any = jwt_decode(token);
         this.userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+
+        this.activatedRoute.params.subscribe(params => {
+          const studentId = +params['id']; 
+    
+          this.studentService.GetStudentById(studentId).subscribe(
+            (data: Student) => {
+              this.student = data;
+              console.log(this.student);
+              this.UserName?.setValue(this.student.userName);
+              this.Email?.setValue(this.student.email);
+              this.Gender?.setValue(this.student.gender);
+              this.Age?.setValue(this.student.age);
+              this.Level?.setValue(this.student.level);
+              this.Password?.setValue('');
+            },
+            (error: any) => {
+              console.error('An error occurred while retrieving instructor details:', error);
+            }
+          );
+        });
 }
   }
   genderEnum = Gender;

@@ -11,6 +11,7 @@ export class StudentService {
   private registerUrl = `https://localhost:7137/api/User`;
   private reservationUrl = `https://localhost:7137/api/Student/GetReservationForStudent`;
   private updateStudentUrl = `https://localhost:7137/api/User/UpdateStudent`;
+  private getStudentById  = `https://localhost:7137/api/Student/GetStudentById`; 
 
   constructor(private http: HttpClient) {}
 
@@ -25,5 +26,9 @@ export class StudentService {
   updateStudentById(id: number, student: Student): Observable<Student[]> {
     const url = `${this.updateStudentUrl}/${id}`;
     return this.http.put<Student[]>(url, student);
+  }
+  GetStudentById(id : number):Observable<Student>{
+    const url = `${this.getStudentById}/${id}`;
+    return this.http.get<Student>(url);
   }
 }

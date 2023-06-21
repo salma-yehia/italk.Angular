@@ -6,6 +6,7 @@ import { InstructorService } from 'src/app/services/instructor.service';
 import jwt_decode from 'jwt-decode';
 import { NgbModal,NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EnrollmentSuccessModelComponent } from 'src/app/student/enrollment-success-model/enrollment-success-model.component';
+import { Router } from '@angular/router';
 
 
 
@@ -14,13 +15,13 @@ import { EnrollmentSuccessModelComponent } from 'src/app/student/enrollment-succ
   selector: 'app-cards-of-instructors',
   templateUrl: './cards-of-instructors.component.html',
   styleUrls: ['./cards-of-instructors.component.css'],
-  // entryComponents: [EnrollmentSuccessModelComponent],
 })
 export class CardsOfInstructorsComponent implements OnInit {
   cards: Instructor[] = [];
-  modalRef!: NgbModalRef
+  modalRef!: NgbModalRef;
+  errorMessage:string="";
 
-  constructor(private instructorService: InstructorService, private authService: AuthService, private modalService: NgbModal) {}
+  constructor(private instructorService: InstructorService, private authService: AuthService, private modalService: NgbModal , private router:Router) {}
 
   ngOnInit(): void {
     this.getInstructorsForLanguage(0);
@@ -96,5 +97,17 @@ export class CardsOfInstructorsComponent implements OnInit {
       console.log('Modal dismissed');
     }
   );
+  }
+  getInstructorDetails(instructorId: number): void {
+        this.instructorService.GetInstructorById(instructorId).subscribe({
+
+        next: (data) => {
+        console.log(data);
+        
+        // Redirect to /instructors/details route
+        this.router.navigate(['/instructors/details', instructorId]);
+      },
+      error: (err) => this.errorMessage = err
+    });
   }
 }

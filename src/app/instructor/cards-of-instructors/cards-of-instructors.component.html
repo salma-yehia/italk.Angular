@@ -41,7 +41,7 @@
             <span *ngIf="instructor.gender === 2">Female</span>
           </p>
           <h5 class="card-title">{{ instructor.appointment | date:'medium' }}</h5>
-          <a href="#" class="btn btn-primary">Read More</a>
+          <a (click)="getInstructorDetails(instructor.id)" class="btn btn-primary">Read More</a>
           <span style="margin: 0 10px"></span>
           <a
             href="#"

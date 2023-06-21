@@ -16,7 +16,8 @@ export class InstructorService {
   private showInstructorsUrl=`https://localhost:7137/api/Instructor/GetInstructorsForLanguage`;
   private createReservationUrl=`https://localhost:7137/api/Reservation/AddReservation`
   private updateInstructorUrl = `https://localhost:7137/api/User/UpdateInstructor`;
-
+  private getInstructorById  = `https://localhost:7137/api/Instructor/GetInstructorById`; 
+  
   constructor(private http : HttpClient) { }
 
   createInstructor(instructor: Instructor): Observable<void> {
@@ -57,5 +58,10 @@ export class InstructorService {
   updateInstructorById(id: number, instructor: Instructor): Observable<Instructor[]> {
     const url = `${this.updateInstructorUrl}/${id}`;
     return this.http.put<Instructor[]>(url, instructor);
+  }
+
+  GetInstructorById(id : number):Observable<Instructor>{
+    const url = `${this.getInstructorById}/${id}`;
+    return this.http.get<Instructor>(url);
   }
 }
