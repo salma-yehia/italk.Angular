@@ -181,9 +181,4 @@ export class InstructorRegisterComponent implements OnInit {
       input.value = '';
     });
   }  
-  
-  
-  
-  
-  
 }
