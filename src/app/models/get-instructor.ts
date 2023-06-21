@@ -4,4 +4,5 @@ export interface GetInstructor {
     imgName : String;
     gender : number;
     languageId : number;
+    appointment : Date;
 }
