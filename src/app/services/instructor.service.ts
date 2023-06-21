@@ -15,6 +15,8 @@ export class InstructorService {
   private reservationUrl =`https://localhost:7137/api/Instructor/GetReservationForInstructor`;
   private showInstructorsUrl=`https://localhost:7137/api/Instructor/GetInstructorsForLanguage`;
   private createReservationUrl=`https://localhost:7137/api/Reservation/AddReservation`
+  private updateInstructorUrl = `https://localhost:7137/api/User/UpdateInstructor`;
+
   constructor(private http : HttpClient) { }
 
   createInstructor(instructor: Instructor): Observable<void> {
@@ -51,5 +53,9 @@ export class InstructorService {
       'https://localhost:7137/api/File/UploadCertificate',
       form
     );
+  }
+  updateInstructorById(id: number, instructor: Instructor): Observable<Instructor[]> {
+    const url = `${this.updateInstructorUrl}/${id}`;
+    return this.http.put<Instructor[]>(url, instructor);
   }
 }
