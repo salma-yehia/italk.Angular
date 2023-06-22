@@ -80,7 +80,7 @@ export class CardsOfInstructorsComponent implements OnInit {
 
       this.instructorService .createReservation(reservation).subscribe(
           (response) => {
-            if (response===1) {
+            if (response===userId) {
               console.log('Reservation created successfully!');
               console.log(reservation);
               this.openSuccessModal();
