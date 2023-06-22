@@ -11,6 +11,7 @@ import { StudentRoutingModule } from './student-routing.module';
 import { EnrollmentSuccessModelComponent } from './enrollment-success-model/enrollment-success-model.component';
 import { UpdateStudentComponent } from './update-student/update-student.component';
 import { EnrollmentFailurModelComponent } from './enrollment-failur-model/enrollment-failur-model.component';
+import { CheckAppointmentModelComponent } from './check-appointment-model/check-appointment-model.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { EnrollmentFailurModelComponent } from './enrollment-failur-model/enroll
     StudentHomeComponent,
     EnrollmentSuccessModelComponent,
     UpdateStudentComponent,
-    EnrollmentFailurModelComponent
+    EnrollmentFailurModelComponent,
+    CheckAppointmentModelComponent
   ],
   exports :[
     StudentRegisterComponent,

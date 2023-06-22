@@ -9,6 +9,7 @@ import { EnrollmentSuccessModelComponent } from 'src/app/student/enrollment-succ
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { EnrollmentFailurModelComponent } from 'src/app/student/enrollment-failur-model/enrollment-failur-model.component';
+import { CheckAppointmentModelComponent } from 'src/app/student/check-appointment-model/check-appointment-model.component';
 
 @Component({
   selector: 'app-cards-of-instructors',
@@ -48,16 +49,14 @@ export class CardsOfInstructorsComponent implements OnInit {
       languageId = option;
     }
 
-    this.instructorService
-      .getInstructorsForLanguage(languageId)
-      .subscribe(
-        (instructors) => {
-          this.cards = instructors;
-        },
-        // error => {
-        //   console.error('Error fetching instructors:', error);
-        // }
-      );
+    this.instructorService.getInstructorsForLanguage(languageId).subscribe(
+      (instructors) => {
+        this.cards = instructors;
+      }
+      // error => {
+      //   console.error('Error fetching instructors:', error);
+      // }
+    );
   }
 
   enrollInstructor(instructor: Instructor, event: Event): void {
@@ -74,22 +73,20 @@ export class CardsOfInstructorsComponent implements OnInit {
       const reservation: Reservation = {
         studentId: userId,
         instructorId: instructor.id,
-        appointment: new Date(),
+        appointment: instructor.appointment,
       };
       console.log(reservation);
       // console.log(instructor);
 
-      this.instructorService
-        .createReservation(reservation)
-        .pipe(switchMap(() => this.instructorService.checkAppointment(reservation)))
-        .subscribe(
-          (isAppointmentAvailable) => {
-            if (isAppointmentAvailable) {
+      this.instructorService .createReservation(reservation).subscribe(
+          (response) => {
+            if (response===1) {
               console.log('Reservation created successfully!');
               console.log(reservation);
-              this.openSuccessModal(); 
+              this.openSuccessModal();
             } else {
               console.log('Appointment not available');
+              this.checkAppointmentModal();
             }
           },
           (error) => {
@@ -123,11 +120,35 @@ export class CardsOfInstructorsComponent implements OnInit {
   }
   openFailureModal(): void {
     const modalOptions = {
-      centered: true
+      centered: true,
     };
-  
-    this.modalRef = this.modalService.open(EnrollmentFailurModelComponent, modalOptions);
-  
+
+    this.modalRef = this.modalService.open(
+      EnrollmentFailurModelComponent,
+      modalOptions
+    );
+
+    this.modalRef.result.then(
+      () => {
+        // Modal closed
+        console.log('Modal closed');
+      },
+      () => {
+        // Modal dismissed
+        console.log('Modal dismissed');
+      }
+    );
+  }
+  checkAppointmentModal(): void {
+    const modalOptions = {
+      centered: true,
+    };
+
+    this.modalRef = this.modalService.open(
+      CheckAppointmentModelComponent,
+      modalOptions
+    );
+
     this.modalRef.result.then(
       () => {
         // Modal closed
