@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StudentModule } from './student/student.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { StudentModule } from './student/student.module';
     BrowserAnimationsModule,
     InstructorModule,
     NgbModule,
-    StudentModule
+    StudentModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

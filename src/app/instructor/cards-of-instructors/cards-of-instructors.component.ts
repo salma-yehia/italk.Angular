@@ -1,14 +1,14 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Instructor } from 'src/app/models/instructor';
 import { Reservation } from 'src/app/models/reservation';
 import { AuthService } from 'src/app/services/auth.service';
 import { InstructorService } from 'src/app/services/instructor.service';
 import jwt_decode from 'jwt-decode';
-import { NgbModal,NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EnrollmentSuccessModelComponent } from 'src/app/student/enrollment-success-model/enrollment-success-model.component';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-
+import { EnrollmentFailurModelComponent } from 'src/app/student/enrollment-failur-model/enrollment-failur-model.component';
 
 @Component({
   selector: 'app-cards-of-instructors',
@@ -18,19 +18,24 @@ import { switchMap } from 'rxjs';
 export class CardsOfInstructorsComponent implements OnInit {
   cards: Instructor[] = [];
   modalRef!: NgbModalRef;
-  errorMessage:string="";
+  errorMessage: string = '';
 
-  constructor(private instructorService: InstructorService, private authService: AuthService, private modalService: NgbModal , private router:Router) {}
+  constructor(
+    private instructorService: InstructorService,
+    private authService: AuthService,
+    private modalService: NgbModal,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getInstructorsForLanguage(0);
   }
 
   selectOption(option: number, event: Event): void {
-    event.preventDefault(); 
+    event.preventDefault();
     this.getInstructorsForLanguage(option);
   }
-  
+
   private getInstructorsForLanguage(option: number): void {
     let languageId: number;
     if (option == 1) {
@@ -39,84 +44,111 @@ export class CardsOfInstructorsComponent implements OnInit {
       languageId = 2;
     } else if (option == 3) {
       languageId = 3;
-    } 
-    else {
+    } else {
       languageId = option;
     }
-     
-    this.instructorService.getInstructorsForLanguage(languageId).subscribe(
-      instructors => {
-        this.cards = instructors;
-      },
-      // error => {
-      //   console.error('Error fetching instructors:', error);
-      // }
-    );
+
+    this.instructorService
+      .getInstructorsForLanguage(languageId)
+      .subscribe(
+        (instructors) => {
+          this.cards = instructors;
+        },
+        // error => {
+        //   console.error('Error fetching instructors:', error);
+        // }
+      );
   }
 
   enrollInstructor(instructor: Instructor, event: Event): void {
-      event.preventDefault();
-      const token = localStorage.getItem('userToken');
-      if (token) {
-        const decodedToken: any = jwt_decode(token);
-        const userId =
-          decodedToken[
-            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
-          ];
-        console.log(userId);
-  
-        const reservation: Reservation = {
-          studentId: userId,
-          instructorId: instructor.id,
-          appointment: new Date(),
-        };
-        console.log(reservation);
-        console.log(instructor);
-  
-        this.instructorService
-          .createReservation(reservation)
-          .pipe(
-            switchMap(() => this.instructorService.checkAppointment(reservation))
-          )
-          .subscribe(
-            (isAppointmentAvailable) => {
-              if (isAppointmentAvailable) {
-                console.log('Reservation created successfully!');
-                console.log(reservation);
-              } else {
-                console.log('Appointment not available');
-              }
-            },
-            (error) => {
-              console.error('Error creating reservation:', error);
-            }
-          );
-      }
-    }
-    
-    openSuccessModal(): void {
-        const modalRef = this.modalService.open(EnrollmentSuccessModelComponent , { centered: true });
-      modalRef.result.then(
-        () => {
-          // Modal closed
-          console.log('Modal closed');
-        },
-        () => {
-          // Modal dismissed
-          console.log('Modal dismissed');
-        }
-      );
-      }
-  getInstructorDetails(instructorId: number): void {
-        this.instructorService.GetInstructorById(instructorId).subscribe({
+    event.preventDefault();
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      const decodedToken: any = jwt_decode(token);
+      const userId =
+        decodedToken[
+          'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+        ];
+      console.log(userId);
 
-        next: (data) => {
+      const reservation: Reservation = {
+        studentId: userId,
+        instructorId: instructor.id,
+        appointment: new Date(),
+      };
+      console.log(reservation);
+      // console.log(instructor);
+
+      this.instructorService
+        .createReservation(reservation)
+        .pipe(switchMap(() => this.instructorService.checkAppointment(reservation)))
+        .subscribe(
+          (isAppointmentAvailable) => {
+            if (isAppointmentAvailable) {
+              console.log('Reservation created successfully!');
+              console.log(reservation);
+              this.openSuccessModal(); 
+            } else {
+              console.log('Appointment not available');
+            }
+          },
+          (error) => {
+            console.error('Error creating reservation:', error);
+            this.openFailureModal();
+          }
+        );
+    }
+  }
+
+  openSuccessModal(): void {
+    const modalOptions = {
+      centered: true,
+    };
+
+    this.modalRef = this.modalService.open(
+      EnrollmentSuccessModelComponent,
+      modalOptions
+    );
+
+    this.modalRef.result.then(
+      () => {
+        // Modal closed
+        console.log('Modal closed');
+      },
+      () => {
+        // Modal dismissed
+        console.log('Modal dismissed');
+      }
+    );
+  }
+  openFailureModal(): void {
+    const modalOptions = {
+      centered: true
+    };
+  
+    this.modalRef = this.modalService.open(EnrollmentFailurModelComponent, modalOptions);
+  
+    this.modalRef.result.then(
+      () => {
+        // Modal closed
+        console.log('Modal closed');
+      },
+      () => {
+        // Modal dismissed
+        console.log('Modal dismissed');
+      }
+    );
+  }
+
+  getInstructorDetails(instructorId: number): void {
+    this.instructorService.GetInstructorById(instructorId).subscribe({
+      next: (data) => {
         console.log(data);
-        
+
         // Redirect to /instructors/details route
         this.router.navigate(['/instructors/details', instructorId]);
       },
-      error: (err) => this.errorMessage = err
+      error: (err) => (this.errorMessage = err),
     });
   }
 }

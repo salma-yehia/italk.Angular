@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { StudentRoutingModule } from './student-routing.module';
 import { EnrollmentSuccessModelComponent } from './enrollment-success-model/enrollment-success-model.component';
 import { UpdateStudentComponent } from './update-student/update-student.component';
+import { EnrollmentFailurModelComponent } from './enrollment-failur-model/enrollment-failur-model.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { UpdateStudentComponent } from './update-student/update-student.componen
     StudentRegisterComponent,
     StudentHomeComponent,
     EnrollmentSuccessModelComponent,
-    UpdateStudentComponent
+    UpdateStudentComponent,
+    EnrollmentFailurModelComponent
   ],
   exports :[
     StudentRegisterComponent,
