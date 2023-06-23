@@ -1,29 +1,13 @@
-
 <div class="container">
   <div class="dropdown">
-    <button
-      class="btn btn-primary dropdown-toggle"
-      type="button"
-      id="languageDropdown"
-      data-bs-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
+    <button class="btn btn-primary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Select Language
     </button>
     <div class="dropdown-menu" aria-labelledby="languageDropdown">
-      <a class="dropdown-item" href="#" (click)="selectOption(0, $event)"
-        >Select Option</a
-      >
-      <a class="dropdown-item" href="#" (click)="selectOption(1, $event)"
-        >English</a
-      >
-      <a class="dropdown-item" href="#" (click)="selectOption(2, $event)"
-        >Germany</a
-      >
-      <a class="dropdown-item" href="#" (click)="selectOption(3, $event)"
-        >France</a
-      >
+      <a class="dropdown-item" href="#" (click)="selectOption(0, $event)">Select Option</a>
+      <a class="dropdown-item" href="#" (click)="selectOption(1, $event)">English</a>
+      <a class="dropdown-item" href="#" (click)="selectOption(2, $event)">Germany</a>
+      <a class="dropdown-item" href="#" (click)="selectOption(3, $event)">France</a>
     </div>
   </div>
 </div>
@@ -31,7 +15,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4" *ngFor="let instructor of cards">
+    <div class="col-md-4" *ngFor="let instructor of cards | paginate: { itemsPerPage: 6, currentPage: page, totalItems: totalCount, id: 'server' }">
       <div class="card">
         <img [src]="instructor.imgName" class="card-img-top" alt="Card Image" />
         <div class="card-body">
@@ -40,18 +24,16 @@
             <span *ngIf="instructor.gender === 1">Male</span>
             <span *ngIf="instructor.gender === 2">Female</span>
           </p>
-          <h5 class="card-title">{{ instructor.appointment | date:'medium' }}</h5>
+          <h5 class="card-title">
+            {{ instructor.appointment | date : "medium" }}
+          </h5>
           <a (click)="getInstructorDetails(instructor.id)" class="btn btn-primary">Read More</a>
           <span style="margin: 0 10px"></span>
-          <a
-            href="#"
-            class="btn btn-success"
-            (click)="enrollInstructor(instructor, $event)"
-            >Enroll</a
-          >
+          <a href="#" class="btn btn-success" (click)="enrollInstructor(instructor, $event)">Enroll</a>
         </div>
       </div>
     </div>
   </div>
   <br />
+  <pagination-controls (pageChange)="onPageChange($event)" id="server"></pagination-controls>
 </div>
