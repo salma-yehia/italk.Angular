@@ -15,12 +15,17 @@
         <li class="nav-item" *ngIf = '!isLogin'>
           <a class="nav-link" routerLink = "/login">Login</a>
         </li> 
-        <a class="navbar-brand" *ngIf="isLogin && role == 'student'" routerLink="students/studentHome">My Reservation</a>
+        <li class="nav-item" *ngIf="isLogin && role == 'student'">
+          <a class="nav-link" routerLink="students/studentHome">My Reservation</a>
+        </li> 
         <li class="nav-item" *ngIf="isLogin && role == 'student'">
           <a class="nav-link" (click)="updateStudent()">Edit</a>
         </li> 
         <li class="nav-item" *ngIf="isLogin && role == 'instructor'">
           <a class="nav-link" (click)="updateInstructor()">Edit</a>
+        </li> 
+        <li class="nav-item" *ngIf="isLogin && role == 'student'">
+          <a class="nav-link" (click)="takeYourExam()">Take Your Exam</a>
         </li> 
         <li class="nav-item" *ngIf = 'isLogin' (click) = 'logout()'>
           <a class="nav-link" routerLink = "">Logout</a>

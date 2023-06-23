@@ -12,6 +12,7 @@ import { EnrollmentSuccessModelComponent } from './enrollment-success-model/enro
 import { UpdateStudentComponent } from './update-student/update-student.component';
 import { EnrollmentFailurModelComponent } from './enrollment-failur-model/enrollment-failur-model.component';
 import { CheckAppointmentModelComponent } from './check-appointment-model/check-appointment-model.component';
+import { ExamComponent } from './exam/exam.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CheckAppointmentModelComponent } from './check-appointment-model/check-
     EnrollmentSuccessModelComponent,
     UpdateStudentComponent,
     EnrollmentFailurModelComponent,
-    CheckAppointmentModelComponent
+    CheckAppointmentModelComponent,
+    ExamComponent
   ],
   exports :[
     StudentRegisterComponent,

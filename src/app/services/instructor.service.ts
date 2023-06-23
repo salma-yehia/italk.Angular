@@ -56,9 +56,9 @@ export class InstructorService {
       form
     );
   }
-  updateInstructorById(id: number, instructor: Instructor): Observable<Instructor[]> {
+  updateInstructorById(id: number, instructor: Instructor): Observable<Instructor> {
     const url = `${this.updateInstructorUrl}/${id}`;
-    return this.http.put<Instructor[]>(url, instructor);
+    return this.http.put<Instructor>(url, instructor);
   }
 
   GetInstructorById(id : number):Observable<Instructor>{
