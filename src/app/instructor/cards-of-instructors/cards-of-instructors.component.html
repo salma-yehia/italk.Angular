@@ -27,6 +27,9 @@
           <h5 class="card-title">
             {{ instructor.appointment | date : "medium" }}
           </h5>
+          
+          <ngb-rating [max]="5" class="custom-rating" ></ngb-rating>
+          <br>
           <a (click)="getInstructorDetails(instructor.id)" class="btn btn-primary">Read More</a>
           <span style="margin: 0 10px"></span>
           <a href="#" class="btn btn-success" (click)="enrollInstructor(instructor, $event)">Enroll</a>
