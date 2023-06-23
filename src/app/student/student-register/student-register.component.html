@@ -54,14 +54,6 @@
       Age is <strong>required.</strong>
     </mat-error>
   </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Level</mat-label>
-    <input type="text" matInput formControlName="Level">
-    <mat-error *ngIf="isControlError('Level', 'required')">
-      Level is <strong>required.</strong>
-    </mat-error>
-  </mat-form-field>
   
       <div class="alert alert-danger" *ngIf="registerForm.invalid && (registerForm.dirty)">
           Please fix the errors in the form.

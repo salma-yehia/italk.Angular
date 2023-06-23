@@ -84,13 +84,13 @@ export class CardsOfInstructorsComponent implements OnInit {
 
       this.instructorService .createReservation(reservation).subscribe(
           (response) => {
-            if (response===userId) {
+            if (response=== -1) {
+              console.log('Appointment not available');
+              this.checkAppointmentModal();
+            } else {
               console.log('Reservation created successfully!');
               console.log(reservation);
               this.openSuccessModal();
-            } else {
-              console.log('Appointment not available');
-              this.checkAppointmentModal();
             }
           },
           (error) => {

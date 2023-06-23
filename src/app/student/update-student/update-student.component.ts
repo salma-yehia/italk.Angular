@@ -38,9 +38,6 @@ export class UpdateStudentComponent implements OnInit {
       ]),
       Password : new FormControl(null , [
         Validators.pattern(`.*[A-Za-z].*`) , Validators.required
-      ]),
-      Level : new FormControl(null , [
-        Validators.required 
       ]),    
     });
 
@@ -60,15 +57,11 @@ export class UpdateStudentComponent implements OnInit {
   get Password(){
     return this.updateForm.get('Password');
   }
-  get Level(){
-    return this.updateForm.get('Level');
-  }
 
     updateData(): void {
     this.updateStudent.userName=this.UserName?.value
     this.updateStudent.gender=+this.Gender?.value
     this.updateStudent.password=this.Password?.value
-    this.updateStudent.level=this.Level?.value
     this.updateStudent.age=this.Age?.value
     this.updateStudent.email=this.Email?.value
 
@@ -99,7 +92,6 @@ export class UpdateStudentComponent implements OnInit {
               this.Email?.setValue(this.student.email);
               this.Gender?.setValue(this.student.gender);
               this.Age?.setValue(this.student.age);
-              this.Level?.setValue(this.student.level);
               this.Password?.setValue('');
             },
             (error: any) => {
