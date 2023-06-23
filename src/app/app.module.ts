@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { InstructorModule } from './instructor/instructor.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StudentModule } from './student/student.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -27,6 +28,7 @@ import { StudentModule } from './student/student.module';
     InstructorModule,
     NgbModule,
     StudentModule,
+    NgxPaginationModule
 
   ],
   providers: [],

@@ -20,6 +20,10 @@ export class CardsOfInstructorsComponent implements OnInit {
   cards: Instructor[] = [];
   modalRef!: NgbModalRef;
   errorMessage: string = '';
+  
+  totalCount=0;
+  page=1;
+  countPerPage=10;
 
   constructor(
     private instructorService: InstructorService,
@@ -171,5 +175,9 @@ export class CardsOfInstructorsComponent implements OnInit {
       },
       error: (err) => (this.errorMessage = err),
     });
+  }
+  getCards(page:number)
+  {
+    
   }
 }
