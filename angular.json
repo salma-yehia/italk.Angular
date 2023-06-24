@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "italk.Angular": {
+      "i18n": {
+        "locales":{
+          "fr": "src/locale/messages.fr.xlf",
+          "es":"src/locale/messages.es.xlf"
+        }
+    },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -49,6 +55,12 @@
               ],
               "outputHashing": "all"
             },
+            "fr":{
+              "localize": ["fr"]
+            },
+            "es":{
+              "localize": ["es"]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -65,6 +77,12 @@
           "configurations": {
             "production": {
               "browserTarget": "italk.Angular:build:production"
+            },
+            "fr":{
+              "browserTarget": "italk.Angular:build:fr"
+            },
+            "es":{
+              "browserTarget": "italk.Angular:build:es"
             },
             "development": {
               "browserTarget": "italk.Angular:build:development"

@@ -12,7 +12,7 @@
             <p class="card-text"><b>Language : </b>
                 <span *ngIf="reservation.instructor?.languageId === 1">English</span>
                 <span *ngIf="reservation.instructor?.languageId === 2">Frensh</span>
-                <span *ngIf="reservation.instructor?.languageId === 2">Germany</span>
+                <span *ngIf="reservation.instructor?.languageId === 3">Germany</span>
               </p>
               <h4 class="card-title"><b>Appointment : </b>{{reservation.instructor?.appointment | date:'medium'}}</h4>
             <span style="margin: 0 10px;"></span>  

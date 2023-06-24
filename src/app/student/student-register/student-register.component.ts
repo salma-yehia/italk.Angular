@@ -42,10 +42,7 @@ export class StudentRegisterComponent implements OnInit {
       ]),
       Password : new FormControl(null , [
         Validators.pattern(`.*[A-Za-z].*`) , Validators.required
-      ]),
-      Level : new FormControl(null , [
-        Validators.required 
-      ]),    
+      ]),   
     });
 
   }
@@ -64,9 +61,7 @@ export class StudentRegisterComponent implements OnInit {
   get Password(){
     return this.registerForm.get('Password');
   }
-  get Level(){
-    return this.registerForm.get('Level');
-  }
+
   ngOnInit(): void {
   }
 
@@ -74,7 +69,6 @@ export class StudentRegisterComponent implements OnInit {
     this.registerStudent.userName=this.UserName?.value
     this.registerStudent.gender=+this.Gender?.value
     this.registerStudent.password=this.Password?.value
-    this.registerStudent.level=this.Level?.value
     this.registerStudent.age=this.Age?.value
     this.registerStudent.email=this.Email?.value
 

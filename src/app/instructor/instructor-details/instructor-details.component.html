@@ -2,23 +2,23 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <h1 class="card-title"><b>User Name : </b>{{ instructor.userName }}</h1>
+          <h1 class="card-title"i18n><b>User Name : </b>{{ instructor.userName }}</h1>
           <b>Image : </b><img [src]="instructor.imgName" class="card-img-top" alt="Card Image" />
           <div class="card-body">
-            <p class="card-text"><b>Gender : </b>
+            <p class="card-text"i18n><b>Gender : </b>
               <span *ngIf="instructor.gender === 1">Male</span>
               <span *ngIf="instructor.gender === 2">Female</span>
             </p>
-            <h5 class="card-title"><b>Appointment : </b>{{ instructor.appointment | date:'medium' }}</h5>
-            <h5 class="card-title"><b>Description : </b>{{ instructor.descroption}}</h5>
-            <h5 class="card-title"><b>Degree : </b>{{ instructor.degree}}</h5>
-            <h5 class="card-title"><b>Email : </b>{{ instructor.email}}</h5>
-            <h5 class="card-title"><b>Exeperience : </b>{{ instructor.experience}}</h5>
-            <h5 class="card-title"><b>Extra Courses : </b>{{ instructor.extraCourses}}</h5>
-            <h5 class="card-title" *ngIf="instructor.languageId === 1"> <b>Language : </b>English</h5>
-            <h5 class="card-title" *ngIf="instructor.languageId === 2"> <b>Language : </b>Frensh</h5>
-            <h5 class="card-title" *ngIf="instructor.languageId === 3"> <b>Language : </b>Germany</h5>
-            <h5 class="card-title"><b>Nationality : </b>{{ instructor.nationality}}</h5>
+            <h5 class="card-title"i18n><b>Appointment : </b>{{ instructor.appointment | date:'medium' }}</h5>
+            <h5 class="card-title"i18n><b>Description : </b>{{ instructor.descroption}}</h5>
+            <h5 class="card-title"i18n><b>Degree : </b>{{ instructor.degree}}</h5>
+            <h5 class="card-title"i18n><b>Email : </b>{{ instructor.email}}</h5>
+            <h5 class="card-title"i18n><b>Exeperience : </b>{{ instructor.experience}}</h5>
+            <h5 class="card-title"i18n><b>Extra Courses : </b>{{ instructor.extraCourses}}</h5>
+            <h5 class="card-title" *ngIf="instructor.languageId === 1"i18n> <b>Language : </b>English</h5>
+            <h5 class="card-title" *ngIf="instructor.languageId === 2"i18n> <b>Language : </b>Frensh</h5>
+            <h5 class="card-title" *ngIf="instructor.languageId === 3"i18n> <b>Language : </b>Germany</h5>
+            <h5 class="card-title"i18n><b>Nationality : </b>{{ instructor.nationality}}</h5>
             <b>Teaching Certificate : </b>
             <img [src]="instructor.teachingCertificate" class="card-img-top" alt="Card Image" />
         </div>

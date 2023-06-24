@@ -13,6 +13,8 @@ import { InstructotHomeComponent } from './instructot-home/instructot-home.compo
 import { StudentModule } from '../student/student.module';
 import { UpdateInstructorComponent } from './update-instructor/update-instructor.component';
 import { InstructorDetailsComponent } from './instructor-details/instructor-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { InstructorDetailsComponent } from './instructor-details/instructor-deta
     InstructotHomeComponent,
     UpdateInstructorComponent,
     InstructorDetailsComponent,   
+    
   ],
   imports: [
     CommonModule,
@@ -33,6 +36,8 @@ import { InstructorDetailsComponent } from './instructor-details/instructor-deta
     ReactiveFormsModule,
     FormsModule,
     StudentModule,
+    NgxPaginationModule,
+    NgbModule
   ],
   exports:
   [

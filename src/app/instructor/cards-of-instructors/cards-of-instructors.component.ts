@@ -7,7 +7,7 @@ import jwt_decode from 'jwt-decode';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EnrollmentSuccessModelComponent } from 'src/app/student/enrollment-success-model/enrollment-success-model.component';
 import { Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { PaginationInstance } from 'ngx-pagination';
 import { EnrollmentFailurModelComponent } from 'src/app/student/enrollment-failur-model/enrollment-failur-model.component';
 import { CheckAppointmentModelComponent } from 'src/app/student/check-appointment-model/check-appointment-model.component';
 
@@ -20,10 +20,14 @@ export class CardsOfInstructorsComponent implements OnInit {
   cards: Instructor[] = [];
   modalRef!: NgbModalRef;
   errorMessage: string = '';
+  page: number = 1; 
+  totalCount: number = 0; 
   
-  totalCount=0;
-  page=1;
-  countPerPage=10;
+  paginationConfig: PaginationInstance = {
+    itemsPerPage: 6,
+    currentPage: 1,
+    totalItems: 0
+  };
 
   constructor(
     private instructorService: InstructorService,
@@ -38,6 +42,7 @@ export class CardsOfInstructorsComponent implements OnInit {
 
   selectOption(option: number, event: Event): void {
     event.preventDefault();
+    this.paginationConfig.currentPage = 1;
     this.getInstructorsForLanguage(option);
   }
 
@@ -56,6 +61,7 @@ export class CardsOfInstructorsComponent implements OnInit {
     this.instructorService.getInstructorsForLanguage(languageId).subscribe(
       (instructors) => {
         this.cards = instructors;
+        this.paginationConfig.totalItems = instructors.length;
       }
       // error => {
       //   console.error('Error fetching instructors:', error);
@@ -84,13 +90,13 @@ export class CardsOfInstructorsComponent implements OnInit {
 
       this.instructorService .createReservation(reservation).subscribe(
           (response) => {
-            if (response===userId) {
+            if (response=== -1) {
+              console.log('Appointment not available');
+              this.checkAppointmentModal();
+            } else {
               console.log('Reservation created successfully!');
               console.log(reservation);
               this.openSuccessModal();
-            } else {
-              console.log('Appointment not available');
-              this.checkAppointmentModal();
             }
           },
           (error) => {
@@ -176,8 +182,8 @@ export class CardsOfInstructorsComponent implements OnInit {
       error: (err) => (this.errorMessage = err),
     });
   }
-  getCards(page:number)
-  {
-    
+  onPageChange(page: number): void {
+    this.paginationConfig.currentPage = page;
+    this.page = page;
   }
 }

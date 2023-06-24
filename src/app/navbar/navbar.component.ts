@@ -62,4 +62,23 @@ updateStudent(){
   error: (err) => this.errorMessage = err
 });
 }
+
+takeYourExam(){
+  this.studentService.GetStudentById(this.userId).subscribe({
+
+    next: (data) => {
+    console.log(data);
+    
+    // Redirect to /instructors/update route
+    this.router.navigate(['/students/exam', this.userId]);
+  },
+  error: (err) => this.errorMessage = err
+});
+}
+changeLanguage(selectedLanguage: string) {
+  const path = 'app/';
+
+  // Redirect the page to the selected language folder
+  window.location.href = `${path}${selectedLanguage}/index.html`;
+}
 }

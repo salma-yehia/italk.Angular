@@ -15,16 +15,29 @@
         <li class="nav-item" *ngIf = '!isLogin'>
           <a class="nav-link" routerLink = "/login">Login</a>
         </li> 
-        <a class="navbar-brand" *ngIf="isLogin && role == 'student'" routerLink="students/studentHome">My Reservation</a>
+        <li class="nav-item" *ngIf="isLogin && role == 'student'">
+          <a class="nav-link" routerLink="students/studentHome">My Reservation</a>
+        </li> 
         <li class="nav-item" *ngIf="isLogin && role == 'student'">
           <a class="nav-link" (click)="updateStudent()">Edit</a>
         </li> 
         <li class="nav-item" *ngIf="isLogin && role == 'instructor'">
           <a class="nav-link" (click)="updateInstructor()">Edit</a>
         </li> 
+        <li class="nav-item" *ngIf="isLogin && role == 'student'">
+          <a class="nav-link" (click)="takeYourExam()">Take Your Exam</a>
+        </li> 
         <li class="nav-item" *ngIf = 'isLogin' (click) = 'logout()'>
           <a class="nav-link" routerLink = "">Logout</a>
         </li> 
       </ul>
+    </div>
+    <h1>Language Selection</h1>
+    <div id="language-selector">
+        <select id="language-dropdown" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+        </select>
     </div>
   </nav>
