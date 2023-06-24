@@ -32,8 +32,8 @@
         </li> 
       </ul>
     </div>
-    <h1>Language Selection</h1>
-    <div id="language-selector">
+    <h2 *ngIf="isLogin && role == 'student'">Language Selection</h2>
+    <div id="language-selector" *ngIf="isLogin && role == 'student'">
         <select id="language-dropdown" onchange="changeLanguage()">
             <option value="en">English</option>
             <option value="fr">French</option>

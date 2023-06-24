@@ -1,15 +1,22 @@
 <h1>Your Level</h1>
 <form>
-    <div *ngFor="let question of questions" class="question">
-      <p class="question-text">{{ question.text }}</p>
-      <div class="options">
-        <label *ngFor="let option of question.options" class="option">
-          <input type="radio" name="question{{ question.id }}" [value]="option.id" (change)="onOptionChange(question.id, option.id)">
-          {{ option.text }}
-        </label>
-      </div>
+  <div *ngFor="let question of questions" class="question">
+    <p class="question-text">{{ question.id }}. {{ question.text }}</p>
+    <div class="options">
+      <label *ngFor="let option of question.options" class="option">
+        <input
+          type="radio"
+          name="question{{ question.id }}"
+          [value]="option.id"
+          (change)="onOptionChange(question.id, option.id)"
+        />
+        {{ option.text }}
+      </label>
     </div>
-    <div class="example-button-row">
-        <button mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="submitExam($event)">Submit</button>
-      </div>  
+  </div>
+  <div class="example-button-row">
+    <button mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="submitExam($event)">
+      Submit
+    </button>
+  </div>
 </form>
