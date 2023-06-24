@@ -29,18 +29,88 @@ export class ExamComponent implements OnInit {
      this.studentId = +params['id']; 
   })
 }
-  onOptionChange(questionId: number, optionIndex: number): void {
-    for (let i = 0; i < this.questions.length; i++) {
-      if (questionId ===1 && optionIndex ===4 ) {
-          this.degree+=10;
+onOptionChange(questionId: number, optionIndex: number): void {
+  console.log('Initial degree:', this.degree);
+
+  switch (questionId) {
+    case 1:
+      if (optionIndex === 1) {
+        this.degree += 10;
+        console.log('Question 1 answer is correct.');
       }
-    }
+      break;
+    case 2:
+      if (optionIndex === 9) {
+        this.degree += 10;
+        console.log('Question 2 answer is correct.');
+      }
+      break;
+    case 3:
+      if (optionIndex === 12) {
+        this.degree += 10;
+        console.log('Question 3 answer is correct.');
+      }
+      break;
+    case 4:
+      if (optionIndex === 15) {
+        this.degree += 10;
+        console.log('Question 4 answer is correct.');
+      }
+      break;
+    case 5:
+      if (optionIndex === 18) {
+        this.degree += 10;
+        console.log('Question 5 answer is correct.');
+      }
+      break;
+    case 6:
+      if (optionIndex === 24) {
+        this.degree += 10;
+        console.log('Question 6 answer is correct.');
+      }
+      break;
+    case 7:
+      if (optionIndex === 28) {
+        this.degree += 10;
+        console.log('Question 7 answer is correct.');
+      }
+      break;
+    case 8:
+      if (optionIndex === 33) {
+        this.degree += 10;
+        console.log('Question 8 answer is correct.');
+      }
+      break;
+    case 9:
+      if (optionIndex === 36) {
+        this.degree += 10;
+        console.log('Question 9 answer is correct.');
+      }
+      break;
+    case 10:
+      if (optionIndex === 39) {
+        this.degree += 10;
+        console.log('Question 10 answer is correct.');
+      }
+      break;
+    default:
+      console.log('Invalid questionId or optionIndex.');
+      break;
   }
+
+  console.log('Updated degree:', this.degree);
+}
+
   submitExam(event: Event) {
     event.preventDefault();
-    console.log(this.degree);
-    if (this.degree === 10) {
+    if (this.degree === 30) {
       this.level.level = 'Beginner';
+    }
+    if (this.degree === 60) {
+      this.level.level = 'Intermediate';
+    }
+    if (this.degree === 100) {
+      this.level.level = 'Advanced';
     }
     this.studentService.UpdateStudentLevel(this.studentId, this.level)
       .subscribe(
@@ -52,7 +122,11 @@ export class ExamComponent implements OnInit {
           this.errorMessage = error;
         }
       );
+      console.log(this.degree);
+
       this.degree = 0;
+      console.log(this.degree);
+
   }
   } 
 
