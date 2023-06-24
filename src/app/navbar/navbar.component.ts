@@ -76,9 +76,9 @@ takeYourExam(){
 });
 }
 changeLanguage(selectedLanguage: string) {
-  const path = 'app/';
+  const path = 'bla bla';
 
   // Redirect the page to the selected language folder
-  window.location.href = `${path}${selectedLanguage}/index.html`;
+  this.router.navigate([`${path}/${selectedLanguage}/index.html`]);
 }
 }
