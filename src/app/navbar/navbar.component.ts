@@ -75,4 +75,10 @@ takeYourExam(){
   error: (err) => this.errorMessage = err
 });
 }
+changeLanguage(selectedLanguage: string) {
+  const path = 'app/';
+
+  // Redirect the page to the selected language folder
+  window.location.href = `${path}${selectedLanguage}/index.html`;
+}
 }

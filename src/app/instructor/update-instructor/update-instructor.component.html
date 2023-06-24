@@ -1,102 +1,102 @@
-<h1>Update Instructor</h1>
+<h1 i18n>Update Instructor</h1>
 <form [formGroup]="updateForm" class="example-form">
     <mat-form-field class="example-full-width">
-      <mat-label>UserName</mat-label>
+      <mat-label i18n>UserName</mat-label>
       <input type="text" matInput formControlName="UserName">
-      <mat-error *ngIf="isControlError('UserName', 'pattern')">
+      <mat-error *ngIf="isControlError('UserName', 'pattern')" i18n>
         Username should contain only characters or digits.
       </mat-error>
-      <mat-error *ngIf="isControlError('UserName', 'required')">
+      <mat-error *ngIf="isControlError('UserName', 'required')" i18n>
         Username is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
         
     <mat-form-field>
-      <mat-label>Select your gender</mat-label>
+      <mat-label i18n>Select your gender</mat-label>
       <select matNativeControl required formControlName="Gender">
         <option label="--select gender --" disabled></option>
         <option *ngFor="let gender of genderValues" [value]="gender">
           {{ genderEnum[+gender] }}
           </option>
       </select>
-      <mat-error *ngIf="isControlError('Gender', 'required')">
+      <mat-error *ngIf="isControlError('Gender', 'required')" i18n>
         Gender is required
       </mat-error>
     </mat-form-field>
         
     <mat-form-field class="example-full-width">
-      <mat-label>Email</mat-label>
+      <mat-label i18n>Email</mat-label>
       <input type="email" matInput formControlName="Email">
-      <mat-error *ngIf="isControlError('Email', 'email')">
+      <mat-error *ngIf="isControlError('Email', 'email')" i18n>
         Enter a valid Email
       </mat-error>
-      <mat-error *ngIf="isControlError('Email', 'required')">
+      <mat-error *ngIf="isControlError('Email', 'required')" i18n>
         Email is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <mat-label>Password</mat-label>
+      <mat-label i18n>Password</mat-label>
       <input type="password" matInput formControlName="Password">
-      <mat-error *ngIf="isControlError('Password', 'pattern')">
+      <mat-error *ngIf="isControlError('Password', 'pattern')" i18n>
         Password should contain at least one character.
       </mat-error>
-      <mat-error *ngIf="isControlError('Password', 'required')">
+      <mat-error *ngIf="isControlError('Password', 'required')" i18n>
         Password is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
         
     <mat-form-field class="example-full-width">
-      <mat-label>Degree</mat-label>
+      <mat-label i18n>Degree</mat-label>
       <input type="number" matInput formControlName="Degree">
-      <mat-error *ngIf="isControlError('Degree', 'required')">
+      <mat-error *ngIf="isControlError('Degree', 'required')" i18n>
         Degree is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <mat-label>Appointment</mat-label>
+      <mat-label i18n>Appointment</mat-label>
       <input type="datetime-local" matInput formControlName="Appointment">
-      <mat-error *ngIf="isControlError('Appointment', 'required')">
+      <mat-error *ngIf="isControlError('Appointment', 'required')" i18n>
         Appointment is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <mat-label>Nationality</mat-label>
+      <mat-label i18n>Nationality</mat-label>
       <input type="text" matInput formControlName="Nationality">
-      <mat-error *ngIf="isControlError('Nationality', 'required')">
+      <mat-error *ngIf="isControlError('Nationality', 'required')" i18n>
         Nationality is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <mat-label>Description</mat-label>
+      <mat-label i18n>Description</mat-label>
       <input type="text" matInput formControlName="Descroption">
-      <mat-error *ngIf="isControlError('Descroption', 'required')">
+      <mat-error *ngIf="isControlError('Descroption', 'required')" i18n>
         Description is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
   
     <div class="example-full-width">
       <input type="file" #fileInput hidden (change)="uploadImage($event)">
-      <button mat-button color="primary" (click)="fileInput.click()">Select Image</button>
+      <button mat-button color="primary" (click)="fileInput.click()" i18n>Select Image</button>
       <span *ngIf="isControlError('Imgname', 'required')">
         Image is <strong>required.</strong></span>
     </div>
     <img [src]="Imgname?.value" alt="Instructor Image" [style.width.px]="350" [style.height.px]="150">
 
     <mat-form-field class="example-full-width">
-      <mat-label>Experience</mat-label>
+      <mat-label i18n>Experience</mat-label>
       <input type="text" matInput formControlName="Experience">
-      <mat-error *ngIf="isControlError('Experience', 'required')">
+      <mat-error *ngIf="isControlError('Experience', 'required')" i18n>
         Experience is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
   
     <div class="example-full-width">
       <input type="file" #fileInput2 hidden (change)="uploadCert($event)">
-      <button mat-button color="primary" (click)="fileInput2.click()">Select Certificate</button>
+      <button mat-button color="primary" (click)="fileInput2.click()" i18n>Select Certificate</button>
       <span *ngIf="isControlError('TeachingCertificate', 'required')">
         TeachingCertificate is <strong>required.</strong></span>
     </div>
@@ -105,29 +105,29 @@
     <mat-form-field class="example-full-width">
       <mat-label>ExtraCourses</mat-label>
       <input type="text" matInput formControlName="ExtraCourses">
-      <mat-error *ngIf="isControlError('ExtraCourses', 'required')">
+      <mat-error *ngIf="isControlError('ExtraCourses', 'required')" i18n>
         ExtraCourses is <strong>required.</strong>
       </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <mat-label>Select Language</mat-label>
+      <mat-label i18n>Select Language</mat-label>
       <select matNativeControl required [(ngModel)]="selectedLanguageId" name="LanguageId" formControlName ="LanguageId">
         <option label="-- Select Language --" disabled></option>
         <option *ngFor="let language of languages" [value]="language.id">
           {{ language.name }}
         </option>
       </select>
-      <mat-error *ngIf="isControlError('LanguageId', 'required')">
+      <mat-error *ngIf="isControlError('LanguageId', 'required')" i18n>
         Language is required
       </mat-error>
     </mat-form-field>
     
-        <div class="alert alert-danger" *ngIf="updateForm.invalid && (updateForm.dirty)">
+        <div class="alert alert-danger" *ngIf="updateForm.invalid && (updateForm.dirty)" i18n>
             Please fix the errors in the form.
         </div>
         
         <div class="example-button-row">
-          <button mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="updateData($event)">Update</button>
+          <button mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="updateData($event)" i18n>Update</button>
         </div>
-    </form>    
+    </form>   
