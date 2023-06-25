@@ -5,6 +5,7 @@
   "projects": {
     "italk.Angular": {
       "i18n": {
+        "sourceLocale":"en-US",
         "locales":{
           "fr": { "translation" : "src/locale/messages.fr.xlf",
             "baseHref": ""
@@ -48,8 +49,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
