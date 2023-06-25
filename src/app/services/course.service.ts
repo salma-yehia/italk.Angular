@@ -8,7 +8,7 @@ import { UploadFile } from '../models/upload-file';
   providedIn: 'root'
 })
 export class CourseService {
-  private AddCourseUrl=`https://localhost:7137/api/Course/AddCourse`;
+  private AddCourseUrl=`https://italkapis.azurewebsites.net/api/Course/AddCourse`;
 
   constructor(private http : HttpClient) { }
 
@@ -22,7 +22,7 @@ export class CourseService {
     form.append('file', image);
 
     return this.http.post<UploadFile>(
-      'https://localhost:7137/api/File/UploadCourseImage',
+      'https://italkapis.azurewebsites.net/api/File/UploadCourseImage',
       form
     );
   }
