@@ -85,7 +85,7 @@ export class AddCourseComponent {
   get  CourseLevel(){
     return this.registerForm.get('CrsLevel');
   }
-  get Imgname(){
+  get Picture(){
     return this.registerForm.get('Picture');
   }
   get LanguageId(){
@@ -107,7 +107,7 @@ export class AddCourseComponent {
     this.addCourse.crsCategory=this.CourseCategory?.value;
     this.addCourse.crsLevel=this.CourseLevel?.value;
     this.addCourse.description=this.Description?.value;
-    this.addCourse.picture=this.Imgname?.value;
+    this.addCourse.picture=this.Picture?.value;
     this.addCourse.languageId=this.LanguageId?.value;
     this.addCourse.instructorId=userId;
     this.addCourse.numOfPlaces=this.NumberOfPlaces?.value;
