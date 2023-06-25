@@ -9,7 +9,7 @@ import{Router} from '@angular/router'
   providedIn: 'root'
 })
 export class AuthService {
-  private loginUrl = `https://localhost:7137/api/User`;
+  private loginUrl = `https://italkapis.azurewebsites.net/api/User`;
   userData = new BehaviorSubject (null);
 
   constructor(private http : HttpClient , private router : Router) { 

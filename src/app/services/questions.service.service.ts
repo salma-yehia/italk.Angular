@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class QuestionsServiceService {
 
-  private getAllQuestions  = `https://localhost:7137/api/Questions/GetAllQuestions`; 
+  private getAllQuestions  = `https://italkapis.azurewebsites.net/api/Questions/GetAllQuestions`; 
 
   constructor(private http: HttpClient) {}
 
