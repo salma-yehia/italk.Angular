@@ -103,13 +103,13 @@ onOptionChange(questionId: number, optionIndex: number): void {
 
   submitExam(event: Event) {
     event.preventDefault();
-    if (this.degree === 30) {
+    if (this.degree <= 30) {
       this.level.level = 'Beginner';
     }
-    if (this.degree === 60) {
+    if (this.degree >= 30 && this.degree <= 60) {
       this.level.level = 'Intermediate';
     }
-    if (this.degree === 100) {
+    if (this.degree > 60 && this.degree <= 100) {
       this.level.level = 'Advanced';
     }
     this.studentService.UpdateStudentLevel(this.studentId, this.level)
