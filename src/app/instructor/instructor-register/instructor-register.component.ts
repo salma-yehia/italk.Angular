@@ -133,6 +133,7 @@ export class InstructorRegisterComponent implements OnInit {
     this.registerInstructor.nationality=this.Nationality?.value
     this.registerInstructor.teachingCertificate=this.TeachingCertificate?.value
     this.registerInstructor.languageId=this.LanguageId?.value
+    console.log(this.registerInstructor);
 
     this.instructorService.createInstructor(this.registerInstructor).subscribe({
       next: (data) => {

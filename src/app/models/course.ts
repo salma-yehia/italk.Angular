@@ -5,8 +5,8 @@ export interface Course {
   price: number;
   numOfPlaces: number;
   appointment: Date;
-  crsCategory: string;
-  crsLevel: string;
+  crsCategory: number;
+  crsLevel: number;
   instructorId: number;
   languageId: number;
 }
