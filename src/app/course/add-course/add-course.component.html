@@ -1,0 +1,97 @@
+<h1>Add Student</h1>
+<form [formGroup]="registerForm" class="example-form">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Title</mat-label>
+    <input type="text" matInput formControlName="Title">
+    <mat-error *ngIf="isControlError('Title', 'required')">
+      Title is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+      
+  <mat-form-field>
+    <mat-label>Select your course category</mat-label>
+    <select matNativeControl required formControlName="CrsCategory">
+      <option label="--select category --" disabled></option>
+      <option *ngFor="let gender of crsCategoryValues" [value]="gender">
+        {{crsCategoryEnum[+gender] }}
+        </option>
+    </select>
+    <mat-error *ngIf="isControlError('CrsCategory', 'required')">
+      course category is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Select your course level</mat-label>
+    <select matNativeControl required formControlName="CrsLevel">
+      <option label="--select level --" disabled></option>
+      <option *ngFor="let level of levelValues" [value]="level">
+        {{levelEnum[+level] }}
+        </option>
+    </select>
+    <mat-error *ngIf="isControlError('CrsLevel', 'required')">
+      Level is required
+    </mat-error>
+  </mat-form-field>
+            
+  <mat-form-field class="example-full-width">
+    <mat-label>Number of places </mat-label>
+    <input type="number" matInput formControlName="NumOfPlaces">
+    <mat-error *ngIf="isControlError('NumOfPlaces', 'required')">
+      Number Of Places is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Price</mat-label>
+    <input type="number" matInput formControlName="Price">
+    <mat-error *ngIf="isControlError('Price', 'required')">
+      Price is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label i18n>Appointment</mat-label>
+    <input type="datetime-local" matInput formControlName="Appointment">
+    <mat-error *ngIf="isControlError('Appointment', 'required')" i18n>
+      Appointment is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input type="text" matInput formControlName="Description">
+    <mat-error *ngIf="isControlError('Description', 'required')" i18n>
+      Description is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="example-full-width">
+    <input type="file" #fileInput hidden (change)="uploadImage($event)">
+    <button mat-button color="primary" (click)="fileInput.click()" i18n>Select Image</button>
+    <span *ngIf="isControlError('Picture', 'required')">
+      Image is <strong>required.</strong></span>
+  </div>
+  
+  <mat-form-field class="example-full-width">
+    <mat-label i18n>Select Language</mat-label>
+    <select matNativeControl required [(ngModel)]="selectedLanguageId" name="LanguageId" formControlName ="LanguageId">
+      <option label="-- Select Language --" disabled></option>
+      <option *ngFor="let language of languages" [value]="language.id">
+        {{ language.name }}
+      </option>
+    </select>
+    <mat-error *ngIf="isControlError('LanguageId', 'required')" i18n>
+      Language is required
+    </mat-error>
+  </mat-form-field>
+
+      <div class="alert alert-danger" *ngIf="registerForm.invalid && (registerForm.dirty)">
+          Please fix the errors in the form.
+      </div>
+      
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="registerData()">Add</button>
+      </div>
+  </form>   
