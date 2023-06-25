@@ -75,10 +75,16 @@ takeYourExam(){
   error: (err) => this.errorMessage = err
 });
 }
-changeLanguage(selectedLanguage: string) {
-  const path = 'bla bla';
-
-  // Redirect the page to the selected language folder
-  this.router.navigate([`${path}/${selectedLanguage}/index.html`]);
+changeLanguage(event : any) {
+  const pathName = window.location.pathname;
+  const selectedLanguage = event.target.value;
+  let base = '';
+  if(selectedLanguage === 'fr'){
+       base = 'https://fluenta-fr.vercel.app'
+  }
+  else{
+    base = 'https://fluenta-en.vercel.app'
+  }
+  window.location.href = base+pathName;
 }
 }

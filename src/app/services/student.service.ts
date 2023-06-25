@@ -9,11 +9,11 @@ import { GetReservation } from '../models/get-reservation';
   providedIn: 'root',
 })
 export class StudentService {
-  private registerUrl = `https://localhost:7137/api/User`;
-  private reservationUrl = `https://localhost:7137/api/Student/GetReservationForStudent`;
-  private updateStudentUrl = `https://localhost:7137/api/User/UpdateStudent`;
-  private getStudentById  = `https://localhost:7137/api/Student/GetStudentById`; 
-  private updateStudentLevelUrl = `https://localhost:7137/api/User/UpdateStudentLevel`;
+  private registerUrl = `https://italkapis.azurewebsites.net/api/User`;
+  private reservationUrl = `https://italkapis.azurewebsites.net/api/Student/GetReservationForStudent`;
+  private updateStudentUrl = `https://italkapis.azurewebsites.net/api/User/UpdateStudent`;
+  private getStudentById  = `https://italkapis.azurewebsites.net/api/Student/GetStudentById`; 
+  private updateStudentLevelUrl = `https://italkapis.azurewebsites.net/api/User/UpdateStudentLevel`;
 
 
   constructor(private http: HttpClient) {}

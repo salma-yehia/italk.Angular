@@ -11,13 +11,13 @@ import { UploadFile } from '../models/upload-file';
 })
 export class InstructorService {
 
-  private registerUrl = `https://localhost:7137/api/User`;
-  private reservationUrl =`https://localhost:7137/api/Instructor/GetReservationForInstructor`;
-  private showInstructorsUrl=`https://localhost:7137/api/Instructor/GetInstructorsForLanguage`;
-  private createReservationUrl=`https://localhost:7137/api/Reservation/AddReservation`
-  private updateInstructorUrl = `https://localhost:7137/api/User/UpdateInstructor`;
-  private getInstructorById  = `https://localhost:7137/api/Instructor/GetInstructorById`; 
-  private checkAppointmentUrl=`https://localhost:7137/api/Reservation/CheckAppointment`;
+  private registerUrl = `https://italkapis.azurewebsites.net/api/User`;
+  private reservationUrl =`https://italkapis.azurewebsites.net/api/Instructor/GetReservationForInstructor`;
+  private showInstructorsUrl=`https://italkapis.azurewebsites.net/api/Instructor/GetInstructorsForLanguage`;
+  private createReservationUrl=`https://italkapis.azurewebsites.net/api/Reservation/AddReservation`
+  private updateInstructorUrl = `https://italkapis.azurewebsites.net/api/User/UpdateInstructor`;
+  private getInstructorById  = `https://italkapis.azurewebsites.net/api/Instructor/GetInstructorById`; 
+  private checkAppointmentUrl=`https://italkapis.azurewebsites.net/api/Reservation/CheckAppointment`;
 
   constructor(private http : HttpClient) { }
 
@@ -43,7 +43,7 @@ export class InstructorService {
     form.append('file', image);
 
     return this.http.post<UploadFile>(
-      'https://localhost:7137/api/File/UploadImage',
+      'https://italkapis.azurewebsites.net/api/File/UploadImage',
       form
     );
   }
@@ -52,7 +52,7 @@ export class InstructorService {
     form.append('file', cert);
 
     return this.http.post<UploadFile>(
-      'https://localhost:7137/api/File/UploadCertificate',
+      'https://italkapis.azurewebsites.net/api/File/UploadCertificate',
       form
     );
   }
