@@ -13,6 +13,7 @@ import { UpdateStudentComponent } from './update-student/update-student.componen
 import { EnrollmentFailurModelComponent } from './enrollment-failur-model/enrollment-failur-model.component';
 import { CheckAppointmentModelComponent } from './check-appointment-model/check-appointment-model.component';
 import { ExamComponent } from './exam/exam.component';
+import { KnowingLevelModelComponent } from './knowing-level-model/knowing-level-model.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ExamComponent } from './exam/exam.component';
     UpdateStudentComponent,
     EnrollmentFailurModelComponent,
     CheckAppointmentModelComponent,
-    ExamComponent
+    ExamComponent,
+    KnowingLevelModelComponent
   ],
   exports :[
     StudentRegisterComponent,
